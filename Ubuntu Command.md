@@ -68,6 +68,7 @@ Name | find_packages  |    include_directories |   target_link_libraries
 ---|---|---|---
 Eigen   |   Eigen3  |   EIGEN3_INCLUDE_DIR  |   |
 Ceres   |   Ceres   |   CERES_INCLUDE_DIRS  |   CERES_LIBRARIES |
+CSpare  |   CSParse |   CSPARSE_INCLUDE_DIR    |   CSPARSE_LIBRARY
 
 
 ## doxygen
