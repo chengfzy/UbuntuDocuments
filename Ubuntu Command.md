@@ -56,6 +56,7 @@ apt-get install git
 git log --graph --pretty=oneline --abbrev-commit --decorate
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 copy id_rsa.pub to git SSH
+ssh -T git@github.com   # for test
 ```
 
 ## CMake
