@@ -98,7 +98,7 @@ setting:
 ```
 
 
-# Vision
+# Vision & SLAM
 ## Nvidia Driver
 ```sh
 sudo add-apt-repository ppa:graphics-drivers/ppa
@@ -166,6 +166,24 @@ cmake ...
 apt-get install cmake g++   libboost1.58-all-dev libeigen3-dev libflann-dev python libusb-1.0-0-dev libudev-dev freeglut3-dev doxygen graphviz libpng12-dev libgtest-dev libxmu-dev libxi-dev libpcap-dev libqhull-dev
 build vtk from source code
 build pcl from source code
+```
+
+## g2o
+in Ubuntu 14.04
+```sh
+download libQGLView
+open libQGLView/QGLView/QGLView.pro with qt and build
+cd /QGLView/build
+sudo make install
+build g2o
+(maybe) modify ~/.bashrc:
+export LD_LIBRARY_PATH=/home/jeffery/Programs/Qt5.10.1/5.10.1/gcc_64/lib:$LD_LIBRARY_PATH
+```
+in Ubuntu 16.04
+```sh
+sudo apt-get install libQGLView-dev
+cmake and build g2o
+sudo make install
 ```
 
 # Deep Learning
