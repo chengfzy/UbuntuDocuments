@@ -176,8 +176,13 @@ open libQGLView/QGLView/QGLView.pro with qt and build
 cd /QGLView/build
 sudo make install
 build g2o
-(maybe) modify ~/.bashrc:
+
+1. add line to ~/.bashrc
 export LD_LIBRARY_PATH=/home/jeffery/Programs/Qt5.10.1/5.10.1/gcc_64/lib:$LD_LIBRARY_PATH
+2. method 1 will affect other programs, so if want to run g2o app, open terminal
+export LD_LIBRARY_PATH=/home/jeffery/Programs/Qt5.10.1/5.10.1/gcc_64/lib:$LD_LIBRARY_PATH
+then
+g2o_viewer
 ```
 in Ubuntu 16.04
 ```sh
