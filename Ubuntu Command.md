@@ -224,15 +224,19 @@ sudo make install
 
 # Tools Installation & Setting
 ## Qt Creators
-1. Environment-Keyboard
+1. Environment/Keyboard
     ```
     ToggleModeSelector: Ctrl+Alt+0
     ```
-1. Build & Run - General: build directory name:
+1. Build & Run/General/build directory name:
     ```
     ./%{JS: Util.asciify("build-%{CurrentBuild:Name}")}
     ```
-1. Beatifier-Clange Format: New Customerized Style “MyGoogle"
+1. Build & Run/Kits/Enviroment:
+    ```
+    MAKEFLAGS=-j5
+    ```
+1. Beatifier/Clange Format: New Customerized Style “MyGoogle"
     ```sh
     BasedOnStyle: Google
     ColumnLimit: 120
