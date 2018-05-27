@@ -41,25 +41,13 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted
 # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
 ```
 
-## fcitx-wbpy
+## ShadowsocksR
 ```sh
-sudo add-apt-repository ppa:fcitx-team/nightly
-sudo apt-get update
-sudo apt-get install fcitx-table-wbpy
-apply Chinese as global language and restart
-```
-
-## 7z
-```sh
-sudo apt-get install p7zip
-extract: 7z -x file.7z -r -o /home/folder
-compress: 7z a -tr file.7z /home/folder/*
-```
-
-## tar, zip
-```sh
-tar -zxvf file.tar.gz
-unzip archive_name.zip -d ./Folder
+# copy file to folder
+ sudo chmod +x ./ssr 
+ sudo ./ssr install
+ sudo python ./select_config.py
+ sudo ./ssr start
 ```
 
 ## git
@@ -76,6 +64,36 @@ copy ~/.ssh/id_rsa.pub and add to git ssh
 # show log
 git log --graph --pretty=oneline --abbrev-commit --decorate
 ```
+
+## fcitx-wbpy
+```sh
+sudo add-apt-repository ppa:fcitx-team/nightly # or sudo add-apt-repository ppa:fcitx-team/nightly
+sudo apt-get update
+sudo apt-get install fcitx-table-wbpy
+apply Chinese as global language and restart
+```
+
+## Modify Waiting Time(10s) for Ubuntu
+```sh
+sudo vim etc/default/grub
+modify GRUB_HIDDEN_TIMEOUT= 3
+sudo update-grub
+```
+
+
+## 7z
+```sh
+sudo apt-get install p7zip
+extract: 7z -x file.7z -r -o /home/folder
+compress: 7z a -tr file.7z /home/folder/*
+```
+
+## tar, zip
+```sh
+tar -zxvf file.tar.gz
+unzip archive_name.zip -d ./Folder
+```
+
 
 ## CMake
 ```sh
@@ -132,26 +150,21 @@ sudo apt-get install freeglut3-dev
 ```
 
 ## OpenCV
-make, cannot use cmake-gui, will not generate python library
-``` sh
-sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-[optional] sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
-source activate
-cmake \
--DCMAKE_CONFIGURATION_TYPES:STRING="Debug;Release" \
--DOPENCV_EXTRA_MODULES_PATH:PATH="/home/jeffery/Documents/Code/SourceCode/OpenCV/opencv-3.3.0/contrib/modules" \
--DBUILD_opencv_contrib_world:BOOL="1" \
--DBUILD_opencv_world:BOOL="1" \
--DBUILD_opencv_sfm:BOOL="0" \
--DOPENCV_ENABLE_NONFREE:BOOL="1" \
+install dependecy
+```sh
+sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libdc1394-22-dev
+```
+cmake commond
+```
+-DCMAKE_BUILD_TYPE:STRING="Release" \
+-DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages" \
+-DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.6m.so" \
+-DBUILD_DOCS:BOOL="1" \
 -DENABLE_CXX11:BOOL="1" \
--DBUILD_opencv_python2=OFF \
--DBUILD_opencv_python3=ON \
--DBUILD_TESTS:BOOL="0" \
--DBUILD_PERF_TESTS:BOOL="0" \
--DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/Programs/anaconda3/bin/python3" \
--DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/Programs/anaconda3/lib/python3.6/site-packages" \
-..
+-DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages/numpy/core/include/numpy" \
+-DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3" \
+-DOPENCV_ENABLE_NONFREE:BOOL="1" \
+-DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.6m" \
 ```
 generate document
 ```sh
@@ -181,7 +194,7 @@ cmake ...
 
 ## Point Cloud Library
 ```sh
-apt-get install cmake g++   libboost1.58-all-dev libeigen3-dev libflann-dev python libusb-1.0-0-dev libudev-dev freeglut3-dev doxygen graphviz libpng12-dev libgtest-dev libxmu-dev libxi-dev libpcap-dev libqhull-dev
+apt-get install libflann-dev libusb-1.0-0-dev libudev-dev freeglut3-dev graphviz libpng16-dev libgtest-dev libxmu-dev libxi-dev libpcap-dev libqhull-dev
 build vtk from source code
 build pcl from source code
 ```
@@ -209,11 +222,32 @@ cmake and build g2o
 sudo make install
 ```
 
-# Deep Learning
-## Pytorch
+# Tools Installation & Setting
+## Qt Creators
+1. Environment-Keyboard
+    ```
+    ToggleModeSelector: Ctrl+Alt+0
+    ```
+1. Build & Run - General: build directory name:
+    ```
+    ./%{JS: Util.asciify("build-%{CurrentBuild:Name}")}
+    ```
+1. Beatifier-Clange Format: New Customerized Style “MyGoogle"
+    ```sh
+    BasedOnStyle: Google
+    ColumnLimit: 120
+    IndentWidth: 4
+    AllowShortFunctionsOnASingleLine: true
+    AllowShortIfStatementsOnASingleLine: true
+    AllowShortLoopsOnASingleLine: true
+    DerivePointerAlignment: false
+    ```
+
+## Latex
 ```sh
-export CMAKE_PREFIX_PATH=/home/jeffery/anaconda3/bin
-const install cmake
-conda install -c soumith magma-cuda80 # or magma-cuda75 if CUDA 7.5, only for GPU version
-python setup.py install
+sudo apt-get install texlive-full
+# texstudio
+sudo apt-get install texstudio
 ```
+
+# Deep Learning
