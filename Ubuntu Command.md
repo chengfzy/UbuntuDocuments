@@ -195,11 +195,13 @@ cmake ...
 ## Point Cloud Library
 ```sh
 apt-get install libflann-dev libusb-1.0-0-dev libudev-dev freeglut3-dev graphviz libpng16-dev libgtest-dev libxmu-dev libxi-dev libpcap-dev libqhull-dev
-build vtk from source code
-build pcl from source code
+build vtk(7.1.1) from source code
+build pcl(1.8.1) from source code
 ```
 
 ## g2o
+git checkout ff647b
+
 in Ubuntu 14.04
 ```sh
 download libQGLView
@@ -246,6 +248,26 @@ sudo make install
     AllowShortLoopsOnASingleLine: true
     DerivePointerAlignment: false
     ```
+## Clion
+1. Tools/External Tools/Add New
+    - Name: ClangFormat
+    - Program:
+        ```
+        /usr/bin/clang-format-5.0
+        ```
+    - Arguments:
+        ```
+        -style="{BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 120}" -i $FileName$
+        ```
+    - Working directory: 
+        ```
+        $FileDir$
+        ```
+    - Add keyboard shortcut
+        ```
+        Ctrl+Shift+L
+        ```
+
 
 ## Latex
 ```sh
