@@ -94,6 +94,32 @@ tar -zxvf file.tar.gz
 unzip archive_name.zip -d ./Folder
 ```
 
+## bash
+```sh
+sudo apt-get install zsh
+ehco $SHELL     # cureent used shell
+cat /etc/shells # list shell
+chsh -s /bin/zsh    # change to zsh
+
+# install on-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# config
+vim ~/.zshrc
+# modify
+ZSH_THEME="agnoster"
+# Hide default user@hostname
+DEFAULT_USER="jeffery"
+# added by Anaconda3 installer
+export PATH="/home/jeffery/anaconda3/bin:$PATH"
+
+# install font
+# download from https://github.com/powerline/fonts and install
+
+# reboot
+sudo reboot
+```
+
 
 ## CMake
 ```sh
@@ -128,8 +154,7 @@ setting:
 {
     "markdown-preview-enhanced.usePandocParser": true,
     "markdown-preview-enhanced.mathRenderingOption": "MathJax",
-    "markdown-preview-enhanced.previewTheme": "github-dark.css",
-    "pandoc.pdfOptString": "--latex-engine=xelatex --template=D:/Programs/data/template.latex"
+    "markdown-preview-enhanced.previewTheme": "github-dark.css"
 }
 ```
 
