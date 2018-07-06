@@ -63,6 +63,9 @@ copy ~/.ssh/id_rsa.pub and add to git ssh
 
 # show log
 git log --graph --pretty=oneline --abbrev-commit --decorate
+
+# gc
+git gc --prune=now
 ```
 
 ## fcitx-wbpy
