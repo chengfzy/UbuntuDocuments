@@ -275,6 +275,11 @@ sudo make install
 ```
 
 # Tools Installation & Setting
+## clang-format
+1. clang format for file style and all project c++ files
+    ```sh
+    find . -regex '.*\.\(h\|hpp\|cpp\)' -exec clang-format-5.0 -style=file -i {} \;
+    ```
 ## Qt Creators
 1. Environment/Keyboard
     ```
@@ -324,6 +329,8 @@ sudo make install
 sudo apt-get install texlive-full
 # texstudio
 sudo apt-get install texstudio
+# pandoc
+pandoc ./test.tex -s -o ./test.md
 ```
 
 # Deep Learning
