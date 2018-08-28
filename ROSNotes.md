@@ -26,6 +26,17 @@ pip install -U rosdep rosinstall_generator wstool rosinstall six vcstools
 # export PATH="/home/jeffery/anaconda3/bin:$PATH"
 ```
 
+### Use with Clion IDE
+```sh
+cd ~/catkin_ws/src
+ls -l  # Take note of the actual symlink target
+sed -i '' CMakeLists.txt
+ls -l # The symlink should have gone away
+source ~/opt/ros/kinetic/setup.zsh
+~/clion/bin/clion.sh &
+# then import project from /workspace/src folder
+```
+
 ## Basic
 ### Basic Command
 ```sh
@@ -106,12 +117,6 @@ rossrv show [message type]
 ```
 
 ### Publisher and Subscriber
-```sh
-cd ~/catkin_ws/src
-ls -l  # Take note of the actual symlink target
-sed -i '' CMakeLists.txt
-ls -l # The symlink should have gone away
-```
 
 ### Service and Client
 
