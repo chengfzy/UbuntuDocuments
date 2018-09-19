@@ -8,27 +8,23 @@ def select_copy_config():
     # get all the file names in current folder
     choice = []
     for file in os.listdir('.'):
-            if os.path.splitext(file)[1] == '.json':
-                choice.append(file)
+        if file.endswith('.json'):
+            choice.append(file)
     
     # print choose
     print("choose config file:")
-    i = 0
-    print('\t[{}] Do Nothing'.format(i))
-    for file in choice:
-        i = i + 1
-        print('\t[{}] {}'.format(i, file))
+    for (i, file) in enumerate(choice):
+        print('\t[{}] {}'.format(i = 1, file))
     
     
     # check input choose
-    selected = raw_input('Select Choose: ')
-    while not (selected.isdigit() and int(selected) <= i):
-        selected = raw_input('Select Choose: ')
-    selected = int(selected)
+    selected = raw_input('Please Select Choose: ')
+    while not (selected.isdigit() and int(selected) >=0 and int(selected) <= len(choice)):
+        selected = raw_input('Input Error, Please Select Choose: ')
     
     # copy file to folder
-    if selected != 0:
-        shutil.copy('./' + choice[selected - 1], config_path)
+    selected = int(selected)
+    shutil.copy('./' + choice[selected - 1], config_path)
     
 # check sudo
 if __name__ == '__main__':
