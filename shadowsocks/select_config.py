@@ -14,7 +14,7 @@ def select_copy_config():
     # print choose
     print("choose config file:")
     for (i, file) in enumerate(choice):
-        print('\t[{}] {}'.format(i = 1, file))
+        print('\t[{0}] {1}'.format(i + 1, file))
     
     
     # check input choose
