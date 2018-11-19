@@ -1,6 +1,6 @@
 # Basic
 ## VirtualBox
-```sh
+```sh {.line-numbers}
 sudo mount -t vboxsf E /mnt/E
 ```
 
@@ -8,7 +8,7 @@ sudo mount -t vboxsf E /mnt/E
 Ubuntu 的软件源配置文件是 /etc/apt/sources.list。将系统自带的该文件做个备份，将该文件替换为下面内容，即可使用 TUNA 的软件源镜像。
 
 Ubuntu 18.04
-```sh
+```sh {.line-numbers}
 # 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
 # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
@@ -25,7 +25,7 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted
 ```
 
 Ubuntu 16.04
-```sh
+```sh {.line-numbers}
 # 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
 # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
@@ -42,7 +42,7 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted
 ```
 
 ## ShadowsocksR
-```sh
+```sh {.line-numbers}
 # copy file to folder
  sudo chmod +x ./ssr 
  sudo ./ssr install
@@ -51,7 +51,7 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted
 ```
 
 ## git
-```sh
+```sh {.line-numbers}
 # install
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt update
@@ -69,7 +69,7 @@ git gc --prune=now
 ```
 
 ## fcitx-wbpy
-```sh
+```sh {.line-numbers}
 sudo add-apt-repository ppa:fcitx-team/nightly # or sudo add-apt-repository ppa:fcitx-team/nightly
 sudo apt-get update
 sudo apt-get install fcitx-table-wbpy
@@ -77,7 +77,7 @@ apply Chinese as global language and restart
 ```
 
 ## Modify Waiting Time(10s) for Ubuntu
-```sh
+```sh {.line-numbers}
 sudo vim etc/default/grub
 modify GRUB_HIDDEN_TIMEOUT= 3
 sudo update-grub
@@ -85,20 +85,20 @@ sudo update-grub
 
 
 ## 7z
-```sh
+```sh {.line-numbers}
 sudo apt-get install p7zip
 extract: 7z -x file.7z -r -o /home/folder
 compress: 7z a -tr file.7z /home/folder/*
 ```
 
 ## tar, zip
-```sh
+```sh {.line-numbers}
 tar -zxvf file.tar.gz
 unzip archive_name.zip -d ./Folder
 ```
 
 ## bash
-```sh
+```sh {.line-numbers}
 sudo apt-get install zsh
 ehco $SHELL     # cureent used shell
 cat /etc/shells # list shell
@@ -125,7 +125,7 @@ sudo reboot
 
 
 ## CMake
-```sh
+```sh {.line-numbers}
 sudo apt-get install cmake-qt-gui
 ```
 cmake configs
@@ -138,12 +138,12 @@ CSpare  |   CSParse |   CSPARSE_INCLUDE_DIR    |   CSPARSE_LIBRARY
 
 
 ## doxygen
-```sh
+```sh {.line-numbers}
 sudo apt-get install doxygen
 ```
 
 ## Anaconda
-```sh
+```sh {.line-numbers}
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 conda config --set show_channel_urls yes
 source activate
@@ -152,7 +152,7 @@ source activate
 ## VS Code
 install package:
 C/C++, Code Spell Checker, Markdown Preview Enhanced, VSCode-Pandoc
-```
+```json {.line-numbers}
 setting:
 {
     "markdown-preview-enhanced.usePandocParser": true,
@@ -164,7 +164,7 @@ setting:
 
 # Vision & SLAM
 ## Nvidia Driver
-```sh
+```sh {.line-numbers}
 sudo add-apt-repository ppa:graphics-drivers/ppa
 ...
 We currently recommend: `nvidia-361`, Nvidia's current long lived branch.
@@ -179,30 +179,34 @@ sudo apt-get install freeglut3-dev
 
 ## OpenCV
 install dependecy
-```sh
+```sh {.line-numbers}
 sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libdc1394-22-dev
 ```
-cmake commond
+Comment below line in file "/cmake/OpenCVDetectPython.cmake"
+```sh {.line-numbers}
+option(OPENCV_PYTHON3_VERSION "Python3 version" "")
 ```
--DCMAKE_BUILD_TYPE:STRING="Release" \
--DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages" \
--DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.6m.so" \
--DBUILD_DOCS:BOOL="1" \
--DENABLE_CXX11:BOOL="1" \
--DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages/numpy/core/include/numpy" \
--DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3" \
--DOPENCV_ENABLE_NONFREE:BOOL="1" \
+then use below cmake command to config python3(DON'T USE CMAKE-GUI DIRECTLY), and then config other options with GUI
+```sh {.line-numbers}
+cmake \
+-DOPENCV_PYTHON3_VERSION:STRING="3." \
+-DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3.6" \
 -DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.6m" \
+-DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.6m.so" \
+-DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages/numpy/core/include" \
+-DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages" \
+-DCMAKE_BUILD_TYPE:STRING="Release" \
+..
 ```
 generate document
-```sh
+```sh {.line-numbers}
 cd build/doc
 make -j4 doxygen
 make install
 ```
 
 ## Sophus
-```sh
+```sh {.line-numbers}
 git clone https://github.com/strasdat/Sophus.git
 cd Sophus
 git checkout a621ff
@@ -214,14 +218,14 @@ sudo make install
 ```
 
 ## Ceres
-```sh
+```sh {.line-numbers}
 sudo apt-get install libatlas-base-dev
 sudo apt-get install libsuitesparse-dev
 cmake ...
 ```
 
 ## Pangolin
-```sh
+```c++ {.line-numbers}
 # modify code in /src/display/device/display_x11.cpp, line 98-112
     int visual_attribs[] =
     {
@@ -243,7 +247,7 @@ cmake ...
 ```
 
 ## Point Cloud Library
-```sh
+```sh {.line-numbers}
 apt-get install libflann-dev libusb-1.0-0-dev libudev-dev freeglut3-dev graphviz libpng16-dev libgtest-dev libxmu-dev libxi-dev libpcap-dev libqhull-dev
 build vtk(7.1.1) from source code
 build pcl(1.8.1) from source code
@@ -253,7 +257,7 @@ build pcl(1.8.1) from source code
 git checkout ff647b
 
 in Ubuntu 14.04
-```sh
+```sh {.line-numbers}
 download libQGLView
 open libQGLView/QGLView/QGLView.pro with qt and build
 cd /QGLView/build
@@ -268,7 +272,7 @@ then
 g2o_viewer
 ```
 in Ubuntu 16.04
-```sh
+```sh {.line-numbers}
 sudo apt-get install libQGLView-dev
 cmake and build g2o
 sudo make install
@@ -277,24 +281,24 @@ sudo make install
 # Tools Installation & Setting
 ## clang-format
 1. clang format for file style and all project c++ files
-    ```sh
+    ```sh {.line-numbers}
     find . -regex '.*\.\(h\|hpp\|cpp\)' -exec clang-format-5.0 -style=file -i {} \;
     ```
 ## Qt Creators
 1. Environment/Keyboard
-    ```
+    ```yaml {.line-numbers}
     ToggleModeSelector: Ctrl+Alt+0
     ```
 1. Build & Run/General/build directory name:
-    ```
+    ```json {.line-numbers}
     ./%{JS: Util.asciify("build-%{CurrentBuild:Name}")}
     ```
 1. Build & Run/Kits/Enviroment:
-    ```
+    ```sh {.line-numbers}
     MAKEFLAGS=-j5
     ```
 1. Beatifier/Clange Format: New Customerized Style “MyGoogle"
-    ```sh
+    ```yaml {.line-numbers}
     BasedOnStyle: Google
     ColumnLimit: 120
     IndentWidth: 4
@@ -307,25 +311,25 @@ sudo make install
 1. Tools/External Tools/Add New
     - Name: ClangFormat
     - Program:
-        ```
+        ```sh {.line-numbers}
         /usr/bin/clang-format-5.0
         ```
     - Arguments:
-        ```
+        ```sh {.line-numbers}
         -style="{BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 120}" -i $FileName$
         ```
     - Working directory: 
-        ```
+        ```sh {.line-numbers}
         $FileDir$
         ```
     - Add keyboard shortcut
-        ```
+        ```sh {.line-numbers}
         Ctrl+Shift+L
         ```
 
 
 ## Latex
-```sh
+```sh {.line-numbers}
 sudo apt-get install texlive-full
 # texstudio
 sudo apt-get install texstudio
