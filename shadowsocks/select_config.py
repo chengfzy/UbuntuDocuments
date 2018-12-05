@@ -10,7 +10,7 @@ def select_copy_config():
         config_path = '/home/jeffery/.local/share/shadowsocksr/config.json'
     elif sys.platform == 'darwin':
         # OSX
-        config_path = '/Users/test/.local/share/shadowsocksr/config.json'
+        config_path = '/Users/jeffery/.local/share/shadowsocksr/config.json'
 
     # get all the file names in current folder
     choice = []
