@@ -145,8 +145,17 @@ sudo apt-get install doxygen
 ## Anaconda
 ```sh
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
 conda config --set show_channel_urls yes
+# pytorch
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+# for legacy win-64
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/peterjc123/
+
 source activate
+
+# install local package
+conda install --use-local pytorch-0.4.1-py37_cuda9.2.148_cudnn7.1.4_1.tar.bz2
 ```
 
 ## VS Code
@@ -186,14 +195,14 @@ cmake commond
 ```
 cmake \
 -DCMAKE_BUILD_TYPE:STRING="Release" \
--DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages" \
--DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.6m.so" \
+-DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages" \
+-DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.7m.so" \
 -DBUILD_DOCS:BOOL="1" \
 -DENABLE_CXX11:BOOL="1" \
--DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages/numpy/core/include/numpy" \
+-DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages/numpy/core/include" \
 -DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3" \
 -DOPENCV_ENABLE_NONFREE:BOOL="1" \
--DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.6m" \
+-DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.7m" \
 ..
 ```
 generate document
@@ -336,3 +345,28 @@ pandoc ./test.tex -s -o ./test.md
 ```
 
 # Deep Learning
+## CUDA and cuDNN
+1. Remove old version
+    ```sh{.line-numbers}
+    sudo apt-get --purge remove libcudnn
+    cd /usr/local/cuda-9.2/bin
+    sudo ./uninstall_cuda_9.2.pl
+    sudo apt-get autoremove
+    ```
+1. Install CUDA10.0
+    ```sh{.line-numbers}
+    # switch command mode using CTRL+ATL+F1
+    sudo service lightdom stop
+    sudo ./cuda_10.0.130_410.48_linux.run # don't install nvdia driver
+    # add below code into ~/.zshrc
+    # add CUDA path
+    export PATH="/usr/local/cuda/bin:$PATH"
+    export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
+    ```
+1. Install cuDNN
+    ```sh{.line-numbers}
+    tar -xzvf cudnn-10.0-linux-x64-v7.4.1.5.tgz
+    sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+    sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+    sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+    ```
