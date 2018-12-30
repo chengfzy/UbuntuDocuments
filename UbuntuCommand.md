@@ -133,7 +133,9 @@ sudo apt install uget aria2
 
 ## CMake
 ```sh{.line-numbers}
-sudo apt-get install cmake-qt-gui
+sudo cp ./cmake-3.13.2-Linux-x86_64.sh /usr/local
+sudo chmod +x /usr/local/cmake-3.13.2-Linux-x86_64.sh
+sudo /usr/local/cmake-3.13.2-Linux-x86_64.sh
 ```
 cmake configs
 
