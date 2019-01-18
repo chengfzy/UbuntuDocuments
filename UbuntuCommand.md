@@ -224,7 +224,6 @@ cmake \
 ```
 generate document
 ```sh{.line-numbers}
-cd build/doc
 make -j4 doxygen
 make install
 ```
