@@ -163,6 +163,12 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/
 
 source activate
 
+# create common command
+conda env -h
+conda create --name py36 python=3.6
+conda env list
+
+
 # install local package
 conda install --use-local pytorch-0.4.1-py37_cuda9.2.148_cudnn7.1.4_1.tar.bz2
 ```
@@ -199,18 +205,21 @@ sudo apt-get install freeglut3-dev
 install dependecy
 ```sh{.line-numbers}
 sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libdc1394-22-dev
+# used for python document
+sudo apt-get install python-bs4 python3-bs4
 ```
 cmake commond
 ```
 cmake \
 -DCMAKE_BUILD_TYPE:STRING="Release" \
--DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages" \
--DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.7m.so" \
+-DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages" \
+-DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.6m.so" \
 -DBUILD_DOCS:BOOL="1" \ #-DENABLE_CXX11:BOOL="1" \
--DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages/numpy/core/include" \
+-DWITH_QT:BOOL="1"  \
+-DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages/numpy/core/include" \
 -DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3" \
 -DOPENCV_ENABLE_NONFREE:BOOL="1" \
--DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.7m" \
+-DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.6m" \
 ..
 ```
 generate document
@@ -378,3 +387,30 @@ pandoc ./test.tex -s -o ./test.md
     sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
     sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
     ```
+
+## Pytorch
+```sh{.line-numbers}
+# CUDA 10.0
+conda install pytorch torchvision cuda100 -c pytorch
+```
+
+## Tensorflow
+Tensorflow doesn't support CUDA10.0 right now, should build from source
+1. Install Bazel 0.18.1 bazed on [!Bazel install guide](https://docs.bazel.build/versions/master/install-ubuntu.html)
+1. Git clone tensorflow
+    ```sh{.line-numbers}
+    git clone https://github.com/tensorflow/tensorflow.git
+    cd ./tensorflow
+    git checkout r1.12  # switch version 1.12
+    ```
+1. Configure
+    ```sh{.line-numbers}
+    ./configure
+    # please use CUDA and set vesion 10.0, nccl version set to 1.3, others could be default
+    ```
+1. Build with CUDA, maybe slow
+    ```sh{.line-numbers}
+    bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
+    ```
+1. Ref:
+    - https://www.tensorflow.org/install/source
