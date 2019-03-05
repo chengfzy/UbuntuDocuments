@@ -70,7 +70,7 @@ git gc --prune=now
 
 ## fcitx-wbpy
 ```sh{.line-numbers}
-sudo add-apt-repository ppa:fcitx-team/nightly # or sudo add-apt-repository ppa:fcitx-team/nightly
+sudo add-apt-repository ppa:fcitx-team/nightly
 sudo apt-get update
 sudo apt-get install fcitx-table-wbpy
 apply Chinese as global language and restart
@@ -82,7 +82,6 @@ sudo vim etc/default/grub
 modify GRUB_HIDDEN_TIMEOUT= 3
 sudo update-grub
 ```
-
 
 ## 7z
 ```sh{.line-numbers}
@@ -209,13 +208,14 @@ sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libs
 sudo apt-get install python-bs4 python3-bs4
 ```
 cmake commond
-```
+```sh{.line-numbers}
 cmake \
 -DCMAKE_BUILD_TYPE:STRING="Release" \
 -DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages" \
 -DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.6m.so" \
 -DBUILD_DOCS:BOOL="1" \ #-DENABLE_CXX11:BOOL="1" \
 -DWITH_QT:BOOL="1"  \
+-DWITH_CUDA:BOOL="1" \
 -DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages/numpy/core/include" \
 -DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3" \
 -DOPENCV_ENABLE_NONFREE:BOOL="1" \
