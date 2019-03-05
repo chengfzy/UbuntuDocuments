@@ -206,16 +206,21 @@ install dependecy
 sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libdc1394-22-dev
 # used for python document
 sudo apt-get install python-bs4 python3-bs4
+
+# intel inference engine
+source /opt/intel/computer_vision_sdk/bin/setupvars.sh
 ```
 cmake commond
 ```sh{.line-numbers}
 cmake \
 -DCMAKE_BUILD_TYPE:STRING="Release" \
+-DOPENCV_EXTRA_MODULES_PATH:PATH="../contrib/modules" \
 -DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages" \
 -DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.6m.so" \
--DBUILD_DOCS:BOOL="1" \ #-DENABLE_CXX11:BOOL="1" \
--DWITH_QT:BOOL="1"  \
--DWITH_CUDA:BOOL="1" \
+-DBUILD_DOCS=ON \ #-DENABLE_CXX11:BOOL="1" \
+-DWITH_QT=ON  \
+-DWITH_CUDA=ON \
+-DWITH_INF_ENGINE=ON \
 -DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages/numpy/core/include" \
 -DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3" \
 -DOPENCV_ENABLE_NONFREE:BOOL="1" \
