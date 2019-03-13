@@ -10,7 +10,7 @@ def select_copy_config():
         config_path = '/home/jeffery/.local/share/shadowsocksr/config.json'
     elif sys.platform == 'darwin':
         # OSX
-        config_path = '/Users/jeffery/.local/share/shadowsocksr/config.json'
+        config_path = '/Users/test/.local/share/shadowsocksr/config.json'
 
     # get all the file names in current folder
     choice = []
@@ -21,7 +21,7 @@ def select_copy_config():
     # print choose
     print("choose config file:")
     for (i, file) in enumerate(choice):
-        print('\t[{0}] {1}'.format(i + 1, file))
+        print('\t[{0}] {1}'.format(i, file))
 
     # check input choose
     selected = input('Please select choose: ')
@@ -30,7 +30,7 @@ def select_copy_config():
 
     # copy file to folder
     selected = int(selected)
-    shutil.copy('./' + choice[selected - 1], config_path)
+    shutil.copy('./' + choice[selected], config_path)
 
 
 # check sudo

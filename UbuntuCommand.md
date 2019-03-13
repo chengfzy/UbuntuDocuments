@@ -92,6 +92,7 @@ compress: 7z a -tr file.7z /home/folder/*
 
 ## tar, zip
 ```sh{.line-numbers}
+tar -czf file.tar.gz ./folder
 tar -zxvf file.tar.gz
 unzip archive_name.zip -d ./Folder
 ```
@@ -217,13 +218,13 @@ cmake \
 -DOPENCV_EXTRA_MODULES_PATH:PATH="../contrib/modules" \
 -DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages" \
 -DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.6m.so" \
--DBUILD_DOCS=ON \ #-DENABLE_CXX11:BOOL="1" \
+-DBUILD_DOCS=ON \ #-DENABLE_CXX11=ON \
 -DWITH_QT=ON  \
 -DWITH_CUDA=ON \
 -DWITH_INF_ENGINE=ON \
 -DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages/numpy/core/include" \
 -DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3" \
--DOPENCV_ENABLE_NONFREE:BOOL="1" \
+-DOPENCV_ENABLE_NONFREE=ON \
 -DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.6m" \
 ..
 ```
