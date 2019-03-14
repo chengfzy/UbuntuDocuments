@@ -26,6 +26,9 @@ conda install setuptools
 pip install -U rosdep rosinstall_generator wstool rosinstall six vcstools
 # or comment PATH in ~/.zshrc
 # export PATH="/home/jeffery/anaconda3/bin:$PATH"
+
+# dependecies for build
+sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential
 ```
 
 ### Use with CLion IDE
