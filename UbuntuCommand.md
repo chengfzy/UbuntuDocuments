@@ -366,6 +366,16 @@ sudo apt-get install texstudio
 pandoc ./test.tex -s -o ./test.md
 ```
 
+## Regex
+```sh{.line-numbers}
+# find any characters, include break line
+[\s\S]*
+
+# replace "=== xxxx ===" to section("xxx")
+"=+ (.*) =+"  => section("$1")
+```
+
+
 # Deep Learning
 ## CUDA and cuDNN
 1. Remove old version
