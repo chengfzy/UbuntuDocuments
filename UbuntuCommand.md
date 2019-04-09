@@ -156,9 +156,10 @@ sudo apt-get install doxygen
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
 conda config --set show_channel_urls yes
+# conda forge
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
 # pytorch
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
-# for legacy win-64
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/peterjc123/
 
 source activate
@@ -168,9 +169,12 @@ conda env -h
 conda create --name py36 python=3.6
 conda env list
 
-
 # install local package
 conda install --use-local pytorch-0.4.1-py37_cuda9.2.148_cudnn7.1.4_1.tar.bz2
+
+# proxy
+conda config --set proxy_servers.http http://10.69.60.221:8080
+conda config --set proxy_servers.https https://10.69.60.221:8080
 ```
 
 ## VS Code
@@ -202,34 +206,39 @@ sudo apt-get install freeglut3-dev
 ```
 
 ## OpenCV
-install dependecy
 ```sh{.line-numbers}
+# install dependecy
 sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libdc1394-22-dev
 # used for python document
 sudo apt-get install python-bs4 python3-bs4
 
-# intel inference engine
-source /opt/intel/computer_vision_sdk/bin/setupvars.sh
-```
-cmake commond
-```sh{.line-numbers}
+# add intel inference engine
+source /opt/intel/openvino/bin/setupvars.sh
+
+
+# cmake commond
 cmake \
 -DCMAKE_BUILD_TYPE:STRING="Release" \
 -DOPENCV_EXTRA_MODULES_PATH:PATH="../contrib/modules" \
--DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages" \
--DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.6m.so" \
--DBUILD_DOCS=ON \ #-DENABLE_CXX11=ON \
+-DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages" \
+-DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.7m.so" \
+-DBUILD_DOCS=ON \
 -DWITH_QT=ON  \
 -DWITH_CUDA=ON \
 -DWITH_INF_ENGINE=ON \
--DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.6/site-packages/numpy/core/include" \
+-DBUILD_PERF_TESTS=OFF \
+-DBUILD_TESTS=OFF \
+# enable turbo-jpeg for performance
+-DJPEG_INCLUDE_DIR:PATH="/opt/libjpeg-turbo/include" \
+-DJPEG_LIBRARY_RELEASE:FILEPATH="/opt/libjpeg-turbo/lib64/libturbojpeg.so" \
+-DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages/numpy/core/include" \
 -DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3" \
 -DOPENCV_ENABLE_NONFREE=ON \
--DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.6m" \
+-DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.7m" \
 ..
-```
-generate document
-```sh{.line-numbers}
+
+
+# generate document
 make -j4 doxygen
 make install
 ```
