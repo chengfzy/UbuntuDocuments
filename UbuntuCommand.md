@@ -213,7 +213,11 @@ sudo apt-get install freeglut3-dev
 ## OpenCV
 ```sh{.line-numbers}
 # install dependecy
-sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libdc1394-22-dev
+sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libavresample-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libdc1394-22-dev
+# freetype
+sudo apt-get install libfreetype6-dev libharfbuzz-dev
+# others modules dependency
+sudo apt-get install libhdf5-dev libtesseract-dev libleptonica-dev
 # used for python document
 sudo apt-get install python-bs4 python3-bs4
 
@@ -234,7 +238,7 @@ cmake \
 -DBUILD_PERF_TESTS=OFF \
 -DBUILD_TESTS=OFF \
 -DJPEG_INCLUDE_DIR:PATH="/opt/libjpeg-turbo/include" \
--DJPEG_LIBRARY_RELEASE:FILEPATH="/opt/libjpeg-turbo/lib64/libturbojpeg.so" \
+-DJPEG_LIBRARY_RELEASE:FILEPATH="/opt/libjpeg-turbo/lib64/libjpeg.so" \
 -DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages/numpy/core/include" \
 -DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3" \
 -DOPENCV_ENABLE_NONFREE=ON \
