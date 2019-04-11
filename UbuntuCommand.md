@@ -119,6 +119,8 @@ export PATH="/home/jeffery/anaconda3/bin:$PATH"
 # install font
 # download from https://github.com/powerline/fonts and install
 
+# change font to 'Meslo' in teminal perference
+
 # reboot
 sudo reboot
 ```
@@ -151,8 +153,11 @@ CSpare  |   CSParse |   CSPARSE_INCLUDE_DIR    |   CSPARSE_LIBRARY
 sudo apt-get install doxygen
 ```
 
-## Anaconda
+## Anacond
 ```sh{.line-numbers}
+# not be activated on startup
+conda config --set auto_activate_base false
+
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
 conda config --set show_channel_urls yes
@@ -216,7 +221,7 @@ sudo apt-get install python-bs4 python3-bs4
 source /opt/intel/openvino/bin/setupvars.sh
 
 
-# cmake commond
+# cmake commond: enable turbo-jpeg for performance
 cmake \
 -DCMAKE_BUILD_TYPE:STRING="Release" \
 -DOPENCV_EXTRA_MODULES_PATH:PATH="../contrib/modules" \
@@ -228,7 +233,6 @@ cmake \
 -DWITH_INF_ENGINE=ON \
 -DBUILD_PERF_TESTS=OFF \
 -DBUILD_TESTS=OFF \
-# enable turbo-jpeg for performance
 -DJPEG_INCLUDE_DIR:PATH="/opt/libjpeg-turbo/include" \
 -DJPEG_LIBRARY_RELEASE:FILEPATH="/opt/libjpeg-turbo/lib64/libturbojpeg.so" \
 -DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages/numpy/core/include" \
@@ -286,7 +290,7 @@ cmake ...
 
 ## Point Cloud Library
 ```sh{.line-numbers}
-apt-get install libflann-dev libusb-1.0-0-dev libudev-dev freeglut3-dev graphviz libpng16-dev libgtest-dev libxmu-dev libxi-dev libpcap-dev libqhull-dev
+sudo apt-get install libflann-dev libusb-1.0-0-dev libudev-dev freeglut3-dev graphviz libpng16-dev libgtest-dev libxmu-dev libxi-dev libpcap-dev libqhull-dev
 build vtk(7.1.1) from source code
 build pcl(1.8.1) from source code
 ```
