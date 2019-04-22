@@ -229,8 +229,6 @@ source /opt/intel/openvino/bin/setupvars.sh
 cmake \
 -DCMAKE_BUILD_TYPE:STRING="Release" \
 -DOPENCV_EXTRA_MODULES_PATH:PATH="../contrib/modules" \
--DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages" \
--DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.7m.so" \
 -DBUILD_DOCS=ON \
 -DWITH_QT=ON  \
 -DWITH_CUDA=ON \
@@ -239,10 +237,12 @@ cmake \
 -DBUILD_TESTS=OFF \
 -DJPEG_INCLUDE_DIR:PATH="/opt/libjpeg-turbo/include" \
 -DJPEG_LIBRARY_RELEASE:FILEPATH="/opt/libjpeg-turbo/lib64/libjpeg.so" \
+-DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages" \
+-DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.7m.so" \
+-DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.7m" \
 -DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages/numpy/core/include" \
 -DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3" \
 -DOPENCV_ENABLE_NONFREE=ON \
--DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.7m" \
 ..
 
 
@@ -250,6 +250,10 @@ cmake \
 make -j4 doxygen
 make install
 ```
+sometimes, the pycharm could show the completion for OpenCV library, move `~/anaconda3/lib/python3.7/site-packages/cv2/cv2.cpython-37m-x86_64-linux-gnu.so` to `~/anaconda3/lib/python3.7/site-packages/cv2.cpython-37m-x86_64-linux-gnu.so` and delete the `cv2` folder could solve this problem.
+
+
+
 
 ## Sophus
 ```sh{.line-numbers}
