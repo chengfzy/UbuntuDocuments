@@ -66,6 +66,10 @@ git log --graph --pretty=oneline --abbrev-commit --decorate
 
 # gc
 git gc --prune=now
+
+# proxy
+git config --global http.proxy 'http://10.69.60.221:8080'
+git config --global https.proxy 'http://10.69.60.221:8080'
 ```
 
 ## fcitx-wbpy
