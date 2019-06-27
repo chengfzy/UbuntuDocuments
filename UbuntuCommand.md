@@ -41,6 +41,14 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted
 # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
 ```
 
+## proxy
+Add below contents in `/etc/apt/apt.conf`
+```sh{.line-numbers}
+Acquire::http::proxy "http://10.69.60.221:8080";
+Acquire::ftp::proxy "ftp://10.69.60.221:8080";
+Acquire::https::proxy "https://10.69.60.221:8080";
+```
+
 ## ShadowsocksR
 ```sh{.line-numbers}
 # copy file to folder
@@ -387,6 +395,8 @@ sudo make install
 sudo apt-get install texlive-full
 # texstudio
 sudo apt-get install texstudio
+# format
+latexindent -w -s ./File.tex
 # pandoc
 pandoc ./test.tex -s -o ./test.md
 ```

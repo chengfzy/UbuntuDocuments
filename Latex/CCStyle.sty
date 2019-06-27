@@ -1,0 +1,146 @@
+\ProvidesPackage{MyStyle}
+
+
+% ==================== Basic ====================
+\usepackage{CJK}		% chinese support
+\usepackage{xcolor}		% color
+% command to make new title
+\newcommand{\maketitlex}
+{\pdfbookmark[1]{Title}{title}
+	\maketitle	
+	% PDF and content setting
+	\setcounter{page}{1} \pagenumbering{Roman}
+	\pdfbookmark[1]{Contents}{Contents}
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	\listoftodos
+	\todototoc
+	\newpage
+	\setcounter{page}{1} \pagenumbering{arabic}
+}
+
+% ==================== Page Setting ====================
+% page layout
+\usepackage[inner=20mm, outer=50mm, top=30mm, bottom=30mm, headheight=15mm, footskip=10mm, marginparwidth=45mm, marginparsep=5mm]{geometry}
+
+% font and header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO,RE]{\nouppercase{\rightmark}}
+\fancyfoot{}
+% chapter style: Sonny, Lenny, Glenn, Conny, Rejne and Bjarne
+%\usepackage[Conny]{fncychap}
+% paragraph spacing
+%\usepackage{indentfirst}						% indent for first paragraph
+%\setlength{\parskip}{0.5em}
+
+
+% ==================== Contents and Link ====================
+% content style
+\usepackage{titlesec, titletoc}					% content style
+\usepackage[nottoc]{tocbibind}
+% change chapter and section color
+%\usepackage{sectsty}
+%\chapterfont{\color{structurecolor}}
+%\allsectionsfont{\color{structurecolor}}
+% mini toc in each chapter
+%\usepackage{minitoc}
+
+\setcounter{secnumdepth}{3}		% section depth: show subsubsection
+\setcounter{tocdepth}{3}		% content depth
+
+% cross references and pdf bookmarks 
+\usepackage[
+	pdfstartview=FitH,
+	CJKbookmarks=true,
+	bookmarksnumbered=true,
+	bookmarksopen=false,
+	%pdftitle={PDF Title},  % pdf title property
+	pdfauthor={"Jeffery Cheng},    % pdf auther property
+	colorlinks,      		% link use color, not border
+	linkcolor=blue,
+	anchorcolor=blue,
+	citecolor=blue,
+	urlcolor=blue
+]{hyperref}
+
+
+% ==================== Equations ====================
+\usepackage{amssymb, array, amsmath, bm}
+% physics for some math symbols, derivation and partial equations, abs, norm, etc..
+\usepackage{physics}
+
+% modify eqref format, add figure ref, table ref, etc.
+\usepackage{etoolbox}
+\pretocmd{\eqref}{Eq.~}{}{}
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\tabref}[1]{Table.~\ref{#1}}
+
+% define new command for type equations
+\newcommand{\defeqn}{\overset{\mathrm{\Delta}}{=}}							% def=
+\newcommand{\Exp}{\mathrm{Exp}}												% Exp
+\newcommand{\Log}{\mathrm{Log}}												% Exp
+\newcommand{\myf}[2][F]{\underrightarrow{\mathcal{#1}} {}_\mathtt{#2}}		% Frame
+\newcommand{\myr}[2][R]{\bm{\mathbf{#1}}_{\mathtt{#2}}}						% R and T
+\newcommand{\myp}[3][p]{{}_\mathtt{#3}\bm{\mathbf{#1}}_{\mathtt{#2}}}		% p
+\newcommand{\myri}[3][R]{\bm{\mathbf{#1}}_{\mathtt{#2}, #3}}				% R_i and T_i
+\newcommand{\mypi}[4][p]{{}_\mathtt{#3}\bm{\mathbf{#1}}_{\mathtt{#2}, #4}}	% p_i
+
+
+% ==================== List, Tables and Graphics ====================
+% list
+\usepackage[inline]{enumitem}
+% table and graphics
+\usepackage{multirow, booktabs}					% 3 line table
+\usepackage{graphicx, caption, flafter, subfig}	% graphics
+% figure folder
+\graphicspath{{./figure/}{./figures/}{./image/}{./images/}{./graphics/}{./graphic/}{./pictures/}{./picture/}}
+
+
+% ==================== Notes ====================
+\definecolor{notecolor}{RGB}{255,134,24}
+\usepackage{marginnote}
+\usepackage[colorinlistoftodos,backgroundcolor=notecolor,shadow,prependcaption,textsize=footnotesize]{todonotes}
+\newcommand{\note}[1]{\todo[inline,color=notecolor]{\textbf{Note}\quad#1}}
+\newcommand{\discuss}[1]{\todo[inline,color=notecolor]{\textbf{Discuss}\quad#1}}
+
+
+% ==================== Reference ====================
+\usepackage{natbib}
+\usepackage{url}	% web link bib           
+
+
+% ==================== Code List ====================
+\usepackage{listings}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	language=C++,					 % the language of the code
+	backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+	basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	breaklines=true,                 % sets automatic line breaking
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	deletekeywords={...},            % if you want to delete keywords from the given language
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	frame=lines,	                 % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue},       % keyword style
+	morekeywords={*,...},            % if you want to add more keywords to the set
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve},	% string literal style
+	tabsize=2,						% sets default tabsize to 2 spaces
+	title=\lstname					% show the filename of files included with \lstinputlisting; also try caption instead of title
+}
