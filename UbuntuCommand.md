@@ -57,9 +57,13 @@ sudo add-apt-repository ppa:git-core/ppa
 sudo apt update
 apt-get install git
 
+# user setting
+git config --global user.name "Cheng Cheng"
+git config --global user.email "chengcheng0829@gmail.com"
+
 # add key
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-copy ~/.ssh/id_rsa.pub and add to git ssh
+# copy ~/.ssh/id_rsa.pub and add to git ssh
 
 # show log
 git log --graph --pretty=oneline --abbrev-commit --decorate
@@ -119,7 +123,7 @@ export PATH="/home/jeffery/anaconda3/bin:$PATH"
 # install font
 # download from https://github.com/powerline/fonts and install
 
-# change font to 'Meslo' in teminal perference
+# change font to 'Meslo' in teminal perference, also the scheme could be changed
 
 # reboot
 sudo reboot
@@ -128,8 +132,10 @@ sudo reboot
 ## uGet and aria2
 ```sh{.line-numbers}
 sudo add-apt-repository ppa:plushuang-tw/uget-stable
+sudo add-apt-repository ppa:uget-team/ppa
 sudo apt update
 sudo apt install uget aria2
+sudo apt install uget-integrator    # for chrome integration
 ```
 
 
@@ -250,7 +256,7 @@ cmake \
 make -j4 doxygen
 make install
 ```
-sometimes, the pycharm could show the completion for OpenCV library, move `~/anaconda3/lib/python3.7/site-packages/cv2/cv2.cpython-37m-x86_64-linux-gnu.so` to `~/anaconda3/lib/python3.7/site-packages/cv2.cpython-37m-x86_64-linux-gnu.so` and delete the `cv2` folder could solve this problem.
+sometimes, the pycharm couldnot show the completion for OpenCV library correctly, move `~/anaconda3/lib/python3.7/site-packages/cv2/cv2.cpython-37m-x86_64-linux-gnu.so` to `~/anaconda3/lib/python3.7/site-packages/cv2.cpython-37m-x86_64-linux-gnu.so` and delete the `cv2` folder could solve this problem.
 
 
 
