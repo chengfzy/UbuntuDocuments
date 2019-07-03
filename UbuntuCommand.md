@@ -49,6 +49,12 @@ Acquire::ftp::proxy "ftp://10.69.60.221:8080";
 Acquire::https::proxy "https://10.69.60.221:8080";
 ```
 
+Please use those commands before you use pip or wget to install anything.
+```sh{.line-numbers}
+export http_proxy="http://10.69.60.221:8080"
+export https_proxy="http://10.69.60.221:8080"
+```
+
 ## ShadowsocksR
 ```sh{.line-numbers}
 # copy file to folder
