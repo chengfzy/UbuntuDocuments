@@ -1,3 +1,5 @@
+[TOC]
+
 # Basic
 ## VirtualBox
 ```sh{.line-numbers}
@@ -177,7 +179,7 @@ CSpare  |   CSParse |   CSPARSE_INCLUDE_DIR    |   CSPARSE_LIBRARY
 sudo apt-get install doxygen
 ```
 
-## Anacond
+## Anaconda
 ```sh{.line-numbers}
 # not be activated on startup
 conda config --set auto_activate_base false
@@ -454,6 +456,9 @@ pandoc ./test.tex -s -o ./test.md
 ```sh{.line-numbers}
 # CUDA 10.0
 conda install pytorch torchvision cuda100 -c pytorch
+
+# install local package
+conda install --use-local pytorch-0.4.1-py37_cuda9.2.148_cudnn7.1.4_1.tar.bz2
 ```
 
 ## Tensorflow
