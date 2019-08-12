@@ -1,47 +1,39 @@
 [TOC]
 
-# Basic
-## VirtualBox
-```sh{.line-numbers}
-sudo mount -t vboxsf E /mnt/E
-```
 
-## Add Source
-Ubuntu 的软件源配置文件是 /etc/apt/sources.list。将系统自带的该文件做个备份，将该文件替换为下面内容，即可使用 TUNA 的软件源镜像。
 
-Ubuntu 18.04
-```sh{.line-numbers}
-# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+# Basic Setting
+## Install Ubuntu
+1. Use `Rufus` make UEFI bootloader in windows.
+1. If reinstall ubuntu, choose `something else` during `Installation type`, and then select hardware and install.
+1. Partition for ubuntu, 512M for EFI partition, 8-10G for swap, 80G ext4 partition for mounting `/`, others ext4 for mounting `/home`. Choose EFI partition for boot loader.
 
-# 预发布软件源，不建议启用
-# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-```
+## Add tsinghua Source
+Modify `/etc/apt/sources.list`, see [tsinghua mirror](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/).
 
-Ubuntu 16.04
-```sh{.line-numbers}
-# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+## Chrome
+1. Install chrome.
+    - Download in [ubuntu chrome](http://www.ubuntuchrome.com/)
+    - Download [SwitchOmega](https://github.com/FelisCatus/SwitchyOmega/releases)
+    - Modify `SwitchyOmega_Chromium.crx` to `SwitchyOmega_Chromium.zip`, and unzip to some folder.
+    - Open `chrome://extensions/` in chrome, check developer mode, and `Load unpacked` from previous directory.
+1. Install `Git`.
+1. Install `ShadowSocks`, maybe should install `anaconda`
+    ```sh{.line-numbers}
+    # copy file to folder
+    sudo chmod +x ./ssr 
+    sudo ./ssr install
+    sudo python3 ./select_config.py
+    sudo ./ssr start
+    ```
+1. Log in `chrome` and synchronization
 
-# 预发布软件源，不建议启用
-# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
-```
+
+## Add Hide Top Bar
+1. ```sudo apt install chrome-gnome-shell```
+1. Open [GNOME Shell integration for Chrome](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep) to install chrome extension
+1. Open [hide top bar](https://extensions.gnome.org/extension/545/hide-top-bar/) and click `OFF` in left top side.
+
 
 ## proxy
 Add below contents in `/etc/apt/apt.conf`
@@ -57,55 +49,15 @@ export http_proxy="http://10.69.60.221:8080"
 export https_proxy="http://10.69.60.221:8080"
 ```
 
-## ShadowsocksR
-```sh{.line-numbers}
-# copy file to folder
- sudo chmod +x ./ssr 
- sudo ./ssr install
- sudo python ./select_config.py
- sudo ./ssr start
-```
-
-## git
-```sh{.line-numbers}
-# install
-sudo add-apt-repository ppa:git-core/ppa
-sudo apt update
-apt-get install git
-
-# user setting
-git config --global user.name "Cheng Cheng"
-git config --global user.email "chengcheng0829@gmail.com"
-
-# add key
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-# copy ~/.ssh/id_rsa.pub and add to git ssh
-
-# show log
-git log --graph --pretty=oneline --abbrev-commit --decorate
-
-# gc
-git gc --prune=now
-
-# proxy
-git config --global http.proxy 'http://10.69.60.221:8080'
-git config --global https.proxy 'http://10.69.60.221:8080'
-```
 
 ## fcitx-wbpy
 ```sh{.line-numbers}
 sudo add-apt-repository ppa:fcitx-team/nightly
 sudo apt-get update
 sudo apt-get install fcitx-table-wbpy
-apply Chinese as global language and restart
+# apply Chinese as global language and restart
 ```
 
-## Modify Waiting Time(10s) for Ubuntu
-```sh{.line-numbers}
-sudo vim etc/default/grub
-modify GRUB_HIDDEN_TIMEOUT= 3
-sudo update-grub
-```
 
 ## 7z
 ```sh{.line-numbers}
@@ -121,33 +73,34 @@ tar -zxvf file.tar.gz
 unzip archive_name.zip -d ./Folder
 ```
 
-## bash
-```sh{.line-numbers}
-sudo apt-get install zsh
-ehco $SHELL     # cureent used shell
-cat /etc/shells # list shell
-chsh -s /bin/zsh    # change to zsh
+## zsh
+1. Install zsh
+    ```sh{.line-numbers}
+    sudo apt-get install zsh
+    ehco $SHELL     # cureent used shell
+    cat /etc/shells # list shell
+    chsh -s /bin/zsh    # change to zsh
+    ```
+1. Install [on-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+    ```sh{.line-numbers}
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    ```
+1. Config, modify `~/.zshrc` like below
+    ```sh{.line-numbers}
+    # Modify theme
+    ZSH_THEME="agnoster"
 
-# install on-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    # Hide default user
+    DEFAULT_USER="jeffery"
+    
+    # added by Anaconda3 installer
+    export PATH="/home/jeffery/anaconda3/bin:$PATH"
+    ```
+1. Install font
+    - Download [powerline fonts](https://github.com/powerline/fonts) and install
+    - Change font to 'Meslo' in teminal perference, also the scheme could be changed
+1. Reboot
 
-# config
-vim ~/.zshrc
-# modify
-ZSH_THEME="agnoster"
-# Hide default user@hostname
-DEFAULT_USER="jeffery"
-# added by Anaconda3 installer
-export PATH="/home/jeffery/anaconda3/bin:$PATH"
-
-# install font
-# download from https://github.com/powerline/fonts and install
-
-# change font to 'Meslo' in teminal perference, also the scheme could be changed
-
-# reboot
-sudo reboot
-```
 
 ## uGet and aria2
 ```sh{.line-numbers}
@@ -159,20 +112,65 @@ sudo apt install uget-integrator    # for chrome integration
 ```
 
 
+## Latex
+```sh{.line-numbers}
+sudo apt-get install texlive-full
+# texstudio
+sudo apt-get install texstudio
+# format
+latexindent -w -s ./File.tex
+# pandoc
+pandoc ./test.tex -s -o ./test.md
+```
+
+
+
+# Programming
+## git
+```sh{.line-numbers}
+# install
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt update
+apt-get install git
+
+# user setting
+git config --global user.name "Cheng Cheng"
+git config --global user.email "chengcheng0829@gmail.com"
+
+# add key
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+# copy ~/.ssh/id_rsa.pub and add to github ssh
+
+# show log
+git log --graph --pretty=oneline --abbrev-commit --decorate
+
+# gc
+git gc --prune=now
+
+# proxy
+git config --global http.proxy 'http://10.69.60.221:8080'
+git config --global https.proxy 'http://10.69.60.221:8080'
+```
+
+## VS Code
+1. Install `Settings Sync` extensions and synchronization
+
+
+## Regex
+```sh{.line-numbers}
+# find any characters, include break line
+[\s\S]*
+
+# replace "=== xxxx ===" to section("xxx")
+"=+ (.*) =+"  => section("$1")
+```
+
 ## CMake
 ```sh{.line-numbers}
 sudo cp ./cmake-3.13.2-Linux-x86_64.sh /usr/local
 sudo chmod +x /usr/local/cmake-3.13.2-Linux-x86_64.sh
 sudo /usr/local/cmake-3.13.2-Linux-x86_64.sh
 ```
-cmake configs
-
-Name | find_packages  |    include_directories |   target_link_libraries
----|---|---|---
-Eigen   |   Eigen3  |   EIGEN3_INCLUDE_DIR  |   |
-Ceres   |   Ceres   |   CERES_INCLUDE_DIRS  |   CERES_LIBRARIES |
-CSpare  |   CSParse |   CSPARSE_INCLUDE_DIR    |   CSPARSE_LIBRARY
-
 
 ## doxygen
 ```sh{.line-numbers}
@@ -180,21 +178,15 @@ sudo apt-get install doxygen
 ```
 
 ## Anaconda
+1. Channels setting, see [tsinghua mirror](https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/)
 ```sh{.line-numbers}
 # not be activated on startup
 conda config --set auto_activate_base false
 
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-conda config --set show_channel_urls yes
-# conda forge
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
-# pytorch
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/peterjc123/
+# add path to ~/.zshrc
+export PATH="/home/jeffery/anaconda3/bin:$PATH"
 
 source activate
-
 # create common command
 conda env -h
 conda create --name py36 python=3.6
@@ -208,159 +200,119 @@ conda config --set proxy_servers.http http://10.69.60.221:8080
 conda config --set proxy_servers.https https://10.69.60.221:8080
 ```
 
-## VS Code
-install package:
-C/C++, Code Spell Checker, Markdown Preview Enhanced, VSCode-Pandoc
-```
-setting:
-{
-    "markdown-preview-enhanced.usePandocParser": true,
-    "markdown-preview-enhanced.mathRenderingOption": "MathJax",
-    "markdown-preview-enhanced.previewTheme": "github-dark.css"
-}
-```
+
+## NVIDA CUDA cuDNN
+### Install NVIDA driver
+1. Check the GPU info
+    ```sh{.line-numbers}
+    lspci | grep -i nvida
+    ```
+1. Disable nouveau
+    add below text in `/etc/modprobe.d/blacklist.conf`
+    ```sh{.line-numbers}
+    blacklist vga16fb
+    blacklist nouveau
+    blacklist rivafb
+    blacklist rivatv
+    blacklist nvidiafb
+    ```
+1. Update kernel(I don't the why use this command, maybe it's unuseful)
+    ```sh{.line-numbers}
+    sudo update-initramfs -u
+    ```
+1. Reboot, input below command, if nothing ouput, then the disable nouveau is success.
+    ```sh{.line-numbers}
+    lsmod | grep nouveau
+    ```
+1. Add drivers repository
+    ```sh{.line-numbers}
+    sudo add-apt-repository ppa:graphics-drivers/ppa
+    sudo apt-get update
+    ```
+1. Find recommand drivers using
+    ```sh{.line-numbers}
+    ubuntu-drivers devices
+    ```
+1. `Ctrl+Alt+F1` and close graphics,
+    ```sh{.line-numbers}
+    sudo service lightdm stop
+    ```
+1. Install driver
+    ```sh{.line-numbers}
+    sudo apt-get install nvidia-39
+    ```
+1. Reboot and check install is success
+    ```sh{.line-numbers}
+    nvidia-smi
+    nvidia-settings
+    ```
+
+### Install CUDA
+1. Download [CUDA](https://developer.nvidia.com/cuda-downloads), and install, and note don't install the driver
+    ```sh{.line-numbers}
+    sudo ./cuda_10.1.168_418.67_linux.run
+    ```
+1. Add CUDA path in `~/.zshrc`
+    ```sh{.line-numbers}
+    # Add CUDA path
+    export PATH="/usr/local/cuda-10.1:$PATH"
+    export PATH="/usr/local/cuda-10.1/bin:$PATH"
+    export LD_LIBRARY_PATH="/usr/local/cuda-10.1:$LD_LIBRARY_PATH"
+    export LD_LIBRARY_PATH="/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH"
+    ```
+1. Make `/usr/local/cuda/samples` and check install is success
+    ```sh{.line-numbers}
+    ./bin/x86_64/linux/release/deviceQuery
+    ./bin/x86_64/linux/release/simpleTexture3D
+    ```
+
+### Install cuDNN
+1. Download [cuDNN](https://developer.nvidia.com/rdp/cudnn-download) and install below deb
+    - libcudnn7_7.6.2.24-1+cuda10.1_amd64.deb
+    - libcudnn7-dev_7.6.2.24-1+cuda10.1_amd64.deb
+    - libcudnn7-doc_7.6.2.24-1+cuda10.1_amd64.deb
+
+### Reference
+1. https://blog.csdn.net/u012253191/article/details/78997529
+1. https://blog.csdn.net/qq_32408773/article/details/84112166
 
 
-# Vision & SLAM
-## Nvidia Driver
+## SqliteBrowser
+[Install Guide](https://sqlitebrowser.org/dl/)
 ```sh{.line-numbers}
-sudo add-apt-repository ppa:graphics-drivers/ppa
-...
-We currently recommend: `nvidia-361`, Nvidia's current long lived branch.
-For GeForce 8 and 9 series GPUs use `nvidia-340`
-For GeForce 6 and 7 series GPUs use `nvidia-304`
-...
-sudo apt-get update
-sudo apt-get install nvidia-384
-sudo apt-get install mesa-common-dev
-sudo apt-get install freeglut3-dev
+sudo add-apt-repository -y ppa:linuxgndu/sqlitebrowser
+sudo apt-get install sqlitebrowser
 ```
 
-## OpenCV
+
+## Install Libraries
 ```sh{.line-numbers}
-# install dependecy
-sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libavresample-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libdc1394-22-dev
-# freetype
-sudo apt-get install libfreetype6-dev libharfbuzz-dev
-# others modules dependency
-sudo apt-get install libhdf5-dev libtesseract-dev libleptonica-dev
-# used for python document
-sudo apt-get install python-bs4 python3-bs4
-
-# add intel inference engine
-source /opt/intel/openvino/bin/setupvars.sh
-
-
-# cmake commond: enable turbo-jpeg for performance
-cmake \
--DCMAKE_BUILD_TYPE:STRING="Release" \
--DOPENCV_EXTRA_MODULES_PATH:PATH="../contrib/modules" \
--DBUILD_DOCS=ON \
--DWITH_QT=ON  \
--DWITH_CUDA=ON \
--DWITH_INF_ENGINE=ON \
--DBUILD_PERF_TESTS=OFF \
--DBUILD_TESTS=OFF \
--DJPEG_INCLUDE_DIR:PATH="/opt/libjpeg-turbo/include" \
--DJPEG_LIBRARY_RELEASE:FILEPATH="/opt/libjpeg-turbo/lib64/libjpeg.so" \
--DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages" \
--DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.7m.so" \
--DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.7m" \
--DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages/numpy/core/include" \
--DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3" \
--DOPENCV_ENABLE_NONFREE=ON \
-..
-
-
-# generate document
-make -j4 doxygen
-make install
+ sudo apt-get install libgoogle-glog-dev libgflags-dev libboost1.65-all-dev
+ sudo apt-get install libsuitesparse-dev libtbb-dev nasm
+ sudo apt-get install clang-format-8 qt5-default
 ```
-sometimes, the pycharm couldnot show the completion for OpenCV library correctly, move `~/anaconda3/lib/python3.7/site-packages/cv2/cv2.cpython-37m-x86_64-linux-gnu.so` to `~/anaconda3/lib/python3.7/site-packages/cv2.cpython-37m-x86_64-linux-gnu.so` and delete the `cv2` folder could solve this problem.
+Build source for below libraries
+1. gtest
+1. Eigen
+1. ceres
+1. Sophus
+1. nlohmann json
+1. yaml-cpp
+1. SQLiteCpp
+1. libjpeg-turbo-2.0.2, modify cmake setting
+    - select `WITH_JPEG7`
+    - select `WITH_JPEG8`
+    - `CMAKE_INSTALL_PREFIX` to `/usr/local`
+    - `CMAKE_INSTALL_LIBDIR` to `lib`
+    - `CMAKE_INSTALL_DOCDIR` to `<CMAKE_INSTALL_DATAROOTDIR>/doc/turbojpeg`
 
-
-
-
-## Sophus
-```sh{.line-numbers}
-git clone https://github.com/strasdat/Sophus.git
-cd Sophus
-git checkout a621ff
-mkdir build
-cd build
-cmake ..
-make -j4
-sudo make install
-```
-
-## Ceres
-```sh{.line-numbers}
-sudo apt-get install libatlas-base-dev
-sudo apt-get install libsuitesparse-dev
-cmake ...
-```
-
-## Pangolin
-```sh{.line-numbers}
-# modify code in /src/display/device/display_x11.cpp, line 98-112
-    int visual_attribs[] =
-    {
-        GLX_X_RENDERABLE    , True,
-        GLX_DRAWABLE_TYPE   , GLX_WINDOW_BIT,
-        GLX_RENDER_TYPE     , GLX_RGBA_BIT,
-        GLX_X_VISUAL_TYPE   , GLX_TRUE_COLOR,
-        GLX_RED_SIZE        , 8,
-        GLX_GREEN_SIZE      , 8,
-        GLX_BLUE_SIZE       , 8,
-        GLX_ALPHA_SIZE      , 8,
-        GLX_DEPTH_SIZE      , 24,
-        GLX_STENCIL_SIZE    , 8,
-        //GLX_DOUBLEBUFFER    , glx_doublebuffer ? True : False,
-        GLX_DOUBLEBUFFER    , False,
-        None
-    };
-# make and build
-```
-
-## Point Cloud Library
-```sh{.line-numbers}
-sudo apt-get install libflann-dev libusb-1.0-0-dev libudev-dev freeglut3-dev graphviz libpng16-dev libgtest-dev libxmu-dev libxi-dev libpcap-dev libqhull-dev
-build vtk(7.1.1) from source code
-build pcl(1.8.1) from source code
-```
-
-## g2o
-git checkout ff647b
-
-in Ubuntu 14.04
-```sh{.line-numbers}
-download libQGLView
-open libQGLView/QGLView/QGLView.pro with qt and build
-cd /QGLView/build
-sudo make install
-build g2o
-
-1. add line to ~/.bashrc
-export LD_LIBRARY_PATH=/home/jeffery/Programs/Qt5.10.1/5.10.1/gcc_64/lib:$LD_LIBRARY_PATH
-2. method 1 will affect other programs, so if want to run g2o app, open terminal
-export LD_LIBRARY_PATH=/home/jeffery/Programs/Qt5.10.1/5.10.1/gcc_64/lib:$LD_LIBRARY_PATH
-then
-g2o_viewer
-```
-in Ubuntu 16.04
-```sh{.line-numbers}
-sudo apt-get install libQGLView-dev
-cmake and build g2o
-sudo make install
-```
-
-# Tools Installation & Setting
-## clang-format
+## Tools Installation & Setting
+### clang-format
 1. clang format for file style and all project c++ files
     ```sh{.line-numbers}
     find . -regex '.*\.\(h\|hpp\|cpp\)' -exec clang-format-5.0 -style=file -i {} \;
     ```
-## Qt Creators
+### Qt Creators
 1. Environment/Keyboard
     ```
     ToggleModeSelector: Ctrl+Alt+0
@@ -383,7 +335,7 @@ sudo make install
     AllowShortLoopsOnASingleLine: true
     DerivePointerAlignment: false
     ```
-## Clion
+### Clion
 1. Tools/External Tools/Add New
     - Name: ClangFormat
     - Program:
@@ -404,54 +356,132 @@ sudo make install
         ```
 
 
-## Latex
+
+# Vision & SLAM
+## OpenVINO
+1. Uncheck `OpenCV` and `OpenVX` during installation
+
+## OpenCV
 ```sh{.line-numbers}
-sudo apt-get install texlive-full
-# texstudio
-sudo apt-get install texstudio
-# format
-latexindent -w -s ./File.tex
-# pandoc
-pandoc ./test.tex -s -o ./test.md
+# install dependecy
+sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libavresample-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+# freetype
+sudo apt-get install libfreetype6-dev libharfbuzz-dev
+# others modules dependency
+sudo apt-get install libhdf5-dev libtesseract-dev libleptonica-dev
+# used for python document
+sudo apt-get install python-bs4 python3-bs4
+
+# add intel inference engine
+source /opt/intel/openvino/bin/setupvars.sh
+
+
+# cmake commond: enable turbo-jpeg for performance
+cmake \
+-DCMAKE_BUILD_TYPE:STRING="Release" \
+-DOPENCV_EXTRA_MODULES_PATH:PATH="../contrib/modules" \
+-DBUILD_DOCS=ON \
+-DWITH_QT=ON  \
+-DWITH_CUDA=ON \
+-DWITH_INF_ENGINE=ON \
+-DBUILD_PERF_TESTS=OFF \
+-DBUILD_TESTS=OFF \
+-DJPEG_INCLUDE_DIR:PATH="/usr/loca/include" \
+-DJPEG_LIBRARY_RELEASE:FILEPATH="/usr/local/lib/libjpeg.so" \
+-DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages" \
+-DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.7m.so" \
+-DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.7m" \
+-DPYTHON3_NUMPY_INCLUDE_DIRS:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages/numpy/core/include" \
+-DPYTHON3_EXECUTABLE:FILEPATH="/home/jeffery/anaconda3/bin/python3" \
+-DOPENCV_ENABLE_NONFREE=ON \
+..
+
+
+# generate document
+make -j4 doxygen
+make install
 ```
+**Trouble Shotting**
+1. For lastest OpenCV version, will have the below error
+    ```sh{.line-numbers}
+    fatal error: Eigen/Core: No such file or directory
+    #  include <Eigen/Core>
+    ```
+    Modify file `./modules/core/include/opencv2/core/private.hpp` in Line66 from
+    ```cpp{.line-numbers}
+    #  include <Eigen/Core>
+    ```
+    to
+    ```cpp{.line-numbers}
+    #  include <eigen3/Eigen/Core>
+    ```
 
-## Regex
-```sh{.line-numbers}
-# find any characters, include break line
-[\s\S]*
+    Ref: https://github.com/opencv/opencv/issues/14868
+1. After install OpenCV, if use python version, below error may occurs
+    ```sh{.line-numbers}
+    ImportError: /home/jeffery/anaconda3/bin/../lib/libfontconfig.so.1: undefined symbol: FT_Done_MM_Var
 
-# replace "=== xxxx ===" to section("xxx")
-"=+ (.*) =+"  => section("$1")
-```
+    ImportError: /home/jeffery/anaconda3/bin/../lib/libpangoft2-1.0.so.0: undefined symbol: pango_font_description_set_variations
+    ```
 
+    Delete the `libfontconfig.so*` and `libpangoft2-1.0.so*` in `./anaconda3/lib`.
+
+1. sometimes, the pycharm couldnot show the completion for OpenCV library correctly, move `~/anaconda3/lib/python3.7/site-packages/cv2/cv2.cpython-37m-x86_64-linux-gnu.so` to `~/anaconda3/lib/python3.7/site-packages/cv2.cpython-37m-x86_64-linux-gnu.so` and delete the `cv2` folder could solve this problem.
+
+
+## Pangolin
+    ```sh{.line-numbers}
+    # modify code in /src/display/device/display_x11.cpp, line 98-112
+        int visual_attribs[] =
+        {
+            GLX_X_RENDERABLE    , True,
+            GLX_DRAWABLE_TYPE   , GLX_WINDOW_BIT,
+            GLX_RENDER_TYPE     , GLX_RGBA_BIT,
+            GLX_X_VISUAL_TYPE   , GLX_TRUE_COLOR,
+            GLX_RED_SIZE        , 8,
+            GLX_GREEN_SIZE      , 8,
+            GLX_BLUE_SIZE       , 8,
+            GLX_ALPHA_SIZE      , 8,
+            GLX_DEPTH_SIZE      , 24,
+            GLX_STENCIL_SIZE    , 8,
+            //GLX_DOUBLEBUFFER    , glx_doublebuffer ? True : False,
+            GLX_DOUBLEBUFFER    , False,
+            None
+        };
+    # make and build
+    ```
+## Point Cloud Library
+    ```sh{.line-numbers}
+    sudo apt-get install libflann-dev libusb-1.0-0-dev libudev-dev freeglut3-dev graphviz libpng16-dev libgtest-dev libxmu-dev libxi-dev libpcap-dev libqhull-dev
+    build vtk(7.1.1) from source code
+    build pcl(1.8.1) from source code
+    ```
+## g2o
+    git checkout ff647b
+
+    in Ubuntu 14.04
+    ```sh{.line-numbers}
+    download libQGLView
+    open libQGLView/QGLView/QGLView.pro with qt and build
+    cd /QGLView/build
+    sudo make install
+    build g2o
+
+    1. add line to ~/.bashrc
+    export LD_LIBRARY_PATH=/home/jeffery/Programs/Qt5.10.1/5.10.1/gcc_64/lib:$LD_LIBRARY_PATH
+    2. method 1 will affect other programs, so if want to run g2o app, open terminal
+    export LD_LIBRARY_PATH=/home/jeffery/Programs/Qt5.10.1/5.10.1/gcc_64/lib:$LD_LIBRARY_PATH
+    then
+    g2o_viewer
+    ```
+    in Ubuntu 16.04
+    ```sh{.line-numbers}
+    sudo apt-get install libQGLView-dev
+    cmake and build g2o
+    sudo make install
+    ```
 
 # Deep Learning
-## CUDA and cuDNN
-1. Remove old version
-    ```sh{.line-numbers}
-    sudo apt-get --purge remove libcudnn
-    cd /usr/local/cuda-9.2/bin
-    sudo ./uninstall_cuda_9.2.pl
-    sudo apt-get autoremove
-    ```
-1. Install CUDA10.0
-    ```sh{.line-numbers}
-    # switch command mode using CTRL+ATL+F1
-    sudo service lightdom stop
-    sudo ./cuda_10.0.130_410.48_linux.run # don't install nvdia driver
-    # add below code into ~/.zshrc
-    # add CUDA path
-    export PATH="/usr/local/cuda/bin:$PATH"
-    export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
-    ```
-1. Install cuDNN
-    ```sh{.line-numbers}
-    tar -xzvf cudnn-10.0-linux-x64-v7.4.1.5.tgz
-    sudo cp cuda/include/cudnn.h /usr/local/cuda/include
-    sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
-    sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
-    ```
-
 ## Pytorch
 ```sh{.line-numbers}
 # CUDA 10.0
