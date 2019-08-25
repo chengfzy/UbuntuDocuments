@@ -27,6 +27,10 @@ Modify `/etc/apt/sources.list`, see [tsinghua mirror](https://mirrors.tuna.tsing
     sudo ./ssr start
     ```
 1. Log in `chrome` and synchronization
+1. In ubuntu virtual system in `Parallels`, the chrome maybe show in white screen, add `--use-gl=angle` in file `/usr/share/applications/google-chrome.desktop` as below, modify there are 3 occurences.
+    ```
+    Exec=/usr/bin/google-chrome-stable --use-gl=angle
+    ```
 
 
 ## Add Hide Top Bar
@@ -83,7 +87,7 @@ unzip archive_name.zip -d ./Folder
     ```
 1. Install [on-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
     ```sh{.line-numbers}
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     ```
 1. Config, modify `~/.zshrc` like below
     ```sh{.line-numbers}
@@ -134,7 +138,7 @@ sudo apt update
 apt-get install git
 
 # user setting
-git config --global user.name "Cheng Cheng"
+git config --global user.name "Jeffery Cheng"
 git config --global user.email "chengcheng0829@gmail.com"
 
 # add key
@@ -360,6 +364,11 @@ Build source for below libraries
 # Vision & SLAM
 ## OpenVINO
 1. Uncheck `OpenCV` and `OpenVX` during installation
+1. Add path to `~/.zshrc`
+    ```sh{.line-numbers}
+    # Add OpenVINO path
+    source /opt/intel/openvino/bin/setupvars.sh
+    ```
 
 ## OpenCV
 ```sh{.line-numbers}
@@ -386,7 +395,7 @@ cmake \
 -DWITH_INF_ENGINE=ON \
 -DBUILD_PERF_TESTS=OFF \
 -DBUILD_TESTS=OFF \
--DJPEG_INCLUDE_DIR:PATH="/usr/loca/include" \
+-DJPEG_INCLUDE_DIR:PATH="/usr/local/include" \
 -DJPEG_LIBRARY_RELEASE:FILEPATH="/usr/local/lib/libjpeg.so" \
 -DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages" \
 -DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.7m.so" \
