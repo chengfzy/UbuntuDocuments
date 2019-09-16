@@ -81,6 +81,7 @@ unzip archive_name.zip -d ./Folder
 1. Install zsh
     ```sh{.line-numbers}
     sudo apt-get install zsh
+    sudo apt-get install trash-cli  # trash
     ehco $SHELL     # cureent used shell
     cat /etc/shells # list shell
     chsh -s /bin/zsh    # change to zsh
@@ -96,6 +97,9 @@ unzip archive_name.zip -d ./Folder
 
     # Hide default user
     DEFAULT_USER="jeffery"
+
+    # modify rm command
+    alias rm=trash
     
     # added by Anaconda3 installer
     export PATH="/home/jeffery/anaconda3/bin:$PATH"
