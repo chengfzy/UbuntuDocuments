@@ -344,26 +344,16 @@ Build source for below libraries
     DerivePointerAlignment: false
     ```
 ### Clion
-1. Tools/External Tools/Add New
-    - Name: ClangFormat
-    - Program:
-        ```
-        /usr/bin/clang-format-5.0
-        ```
-    - Arguments:
-        ```
-        -style="{BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 120}" -i $FileName$
-        ```
-    - Working directory: 
-        ```
-        $FileDir$
-        ```
-    - Add keyboard shortcut
-        ```
-        Ctrl+Shift+L
-        ```
-
-
+1. Add plugin: `Fil Watchers` and Restart
+1. Open setting `Tools/File Watchers`
+1. New `<customered>`
+    - Name: `Clang Format`
+    - File type: `C/C++`
+    - Scope: `Open Files`
+    - Program: `/usr/bin/clang-format`
+    - Arguments: `-style="{BasedOnStyle: Google, ColumnLimit: 120, IndentWidth: 4, DerivePointerAlignment: false, AccessModifierOffset: -2}" -i $FileName$`
+    - Output paths t refresh: `$FileName$` 
+    - Working directory: `$FileDir$`
 
 # Vision & SLAM
 ## OpenVINO
