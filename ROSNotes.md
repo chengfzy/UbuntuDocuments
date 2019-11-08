@@ -37,7 +37,7 @@ cd ~/catkin_ws/src
 ls -l  # Take note of the actual symlink target
 sed -i '' CMakeLists.txt
 ls -l # The symlink should have gone away
-source ~/opt/ros/kinetic/setup.zsh
+source /opt/ros/kinetic/setup.zsh
 ~/clion/bin/clion.sh &
 # then import project from /workspace/src folder
 ```

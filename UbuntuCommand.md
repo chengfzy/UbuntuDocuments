@@ -319,6 +319,7 @@ Build source for below libraries
 1. clang format for file style and all project c++ files
     ```sh{.line-numbers}
     find . -regex '.*\.\(h\|hpp\|cpp\)' -exec clang-format-5.0 -style=file -i {} \;
+    find . -regex '.*\.\(h\|hpp\|cpp\)' -exec clang-format-6.0 -style="{BasedOnStyle: Google, IndentWidth: 4, DerivePointerAlignment: false, AccessModifierOffset: -2, ColumnLimit: 120}" -i {} \;
     ```
 ### Qt Creators
 1. Environment/Keyboard
@@ -338,6 +339,7 @@ Build source for below libraries
     BasedOnStyle: Google
     ColumnLimit: 120
     IndentWidth: 4
+    AccessModifierOffset: -2
     AllowShortFunctionsOnASingleLine: true
     AllowShortIfStatementsOnASingleLine: true
     AllowShortLoopsOnASingleLine: true
