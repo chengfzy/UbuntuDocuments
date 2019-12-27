@@ -157,7 +157,7 @@ git gc --prune=now
 
 # proxy
 git config --global http.proxy 'http://10.69.60.221:8080'
-git config --global https.proxy 'http://10.69.60.221:8080'
+git config --global https.proxy 'https://10.69.60.221:8080'
 ```
 
 ## VS Code
@@ -376,6 +376,8 @@ sudo apt-get install libfreetype6-dev libharfbuzz-dev
 sudo apt-get install libhdf5-dev libtesseract-dev libleptonica-dev
 # used for python document
 sudo apt-get install python-bs4 python3-bs4
+# used for svg document
+sudo apt-get install graphviz doxygen
 
 # add intel inference engine
 source /opt/intel/openvino/bin/setupvars.sh
