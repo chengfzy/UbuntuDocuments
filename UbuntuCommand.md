@@ -374,10 +374,13 @@ sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev liba
 sudo apt-get install libfreetype6-dev libharfbuzz-dev
 # others modules dependency
 sudo apt-get install libhdf5-dev libtesseract-dev libleptonica-dev
+
 # used for python document
 sudo apt-get install python-bs4 python3-bs4
 # used for svg document
 sudo apt-get install graphviz doxygen
+# modify doxygen setting in doc/Doxyfile.in
+DOT_GRAPH_MAX_NODES = 500
 
 # add intel inference engine
 source /opt/intel/openvino/bin/setupvars.sh
