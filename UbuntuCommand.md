@@ -124,6 +124,8 @@ sudo apt install uget-integrator    # for chrome integration
 ```sh{.line-numbers}
 sudo apt-get install texlive-full
 # texstudio
+sudo add-apt-repository ppa:sunderme/texstudio
+sudo apt-get update
 sudo apt-get install texstudio
 # format
 latexindent -w -s ./File.tex
@@ -131,7 +133,15 @@ latexindent -w -s ./File.tex
 pandoc ./test.tex -s -o ./test.md
 ```
 
-
+## Zotero
+1. Install based on the [offical instruction](https://www.zotero.org/support/installation#how_do_i_install_zotero)
+1. Install plugin [better bibtex](https://retorque.re/zotero-better-bibtex/) ([download site](https://github.com/retorquere/zotero-better-bibtex/releases))
+1. Modify config in `Preferences/Advanced/Config Editor`, search `rename`, and modify below value
+    - `extensions.zotero.attachmentRenameFormatString`: `{%t{80}_}{%c_}{%y}`
+    - `extensions.zotero.autoRenameFiles.linked`: `true`
+    - `extensions.zotero.lastRenameAssociatedFile`: `true`
+1. Log in and sync
+1. Copy files in folder `storage` to this computer.
 
 # Programming
 ## git
