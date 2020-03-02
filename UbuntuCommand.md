@@ -8,6 +8,10 @@
 1. If reinstall ubuntu, choose `something else` during `Installation type`, and then select hardware and install.
 1. Partition for ubuntu, 512M for EFI partition, 8-10G for swap, 80G ext4 partition for mounting `/`, others ext4 for mounting `/home`. Choose EFI partition for boot loader.
 
+## Ubuntu Setting
+1. `Setting/Keyboard`, search `switch`, and set the shortcut of `Switch windows` to `Super+Tab`.
+
+
 ## Add tsinghua Source
 Modify `/etc/apt/sources.list`, see [tsinghua mirror](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/).
 
@@ -33,10 +37,14 @@ Modify `/etc/apt/sources.list`, see [tsinghua mirror](https://mirrors.tuna.tsing
     ```
 
 
-## Add Hide Top Bar
+## GNOME Extension
 1. ```sudo apt install chrome-gnome-shell```
 1. Open [GNOME Shell integration for Chrome](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep) to install chrome extension
-1. Open [hide top bar](https://extensions.gnome.org/extension/545/hide-top-bar/) and click `OFF` in left top side.
+1. Open [GNOME Site](https://extensions.gnome.org/) to manage and set the extensions
+1. Recommend extensions:
+    - Hide Top Bar
+    - Clipboard Indicator
+    - Screenshot Tool
 
 
 ## proxy
