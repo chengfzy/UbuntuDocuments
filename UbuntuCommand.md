@@ -58,7 +58,7 @@ Acquire::https::proxy "https://10.69.60.221:8080";
 Please use those commands before you use pip or wget to install anything.
 ```sh{.line-numbers}
 export http_proxy="http://10.69.60.221:8080"
-export https_proxy="http://10.69.60.221:8080"
+export https_proxy="https://10.69.60.221:8080"
 ```
 
 
@@ -81,8 +81,28 @@ compress: 7z a -tr file.7z /home/folder/*
 ## tar, zip
 ```sh{.line-numbers}
 tar -czf file.tar.gz ./folder
+# enter directory to compress
+tar -czf ../../package/data.tar.gz -C ../../package/data .
 tar -zxvf file.tar.gz
 unzip archive_name.zip -d ./Folder
+```
+
+## ssh
+```sh{.line-numbers}
+# connect to server
+ssh jeffery@192.108.0.2
+# copy folder
+scp -rf ~/Documents/Code jeffery@192.108.0.2:/home/jeffery/Documents
+# rsync, copy file exclude
+rsync -arv --exclude '*.bag' jeffery@192.108.0.2:/home/jeffery/Documents/Code/CameraCalibration/ ./
+
+# screen
+screen
+# Ctrl+A, ? for help
+# Ctrl+A, d for detach
+exit # quit screen mode
+screen -ls # show detached connection
+screen -r <ID> # recover
 ```
 
 ## zsh
