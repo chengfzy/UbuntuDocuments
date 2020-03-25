@@ -31,6 +31,20 @@ pip install -U rosdep rosinstall_generator wstool rosinstall six vcstools
 sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential
 ```
 
+### Install ROS Melodic on Ubuntu 18.04
+Ref:
+    1. [ROS Installation](http://wiki.ros.org/melodic/Installation/Ubuntu)
+    1. [Tsinghua Mirror](https://mirrors.tuna.tsinghua.edu.cn/help/ros/)
+
+```sh{.line-numbers}
+# new file `/etc/apt/sources.list.d/ros-latest.list` with content
+deb https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/ bionic main
+# add GPG key and update
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+sudo apt update
+sudo apt-get install ros-melodic-desktop-full
+```
+
 ### Use with CLion IDE
 ```sh
 cd ~/catkin_ws/src
