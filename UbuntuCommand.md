@@ -294,6 +294,8 @@ conda config --set proxy_servers.https https://10.69.60.221:8080
     ```
 
 ### Install CUDA
+Could install using package management, see [example](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=debnetwork).
+
 1. Download [CUDA](https://developer.nvidia.com/cuda-downloads), and install, and note don't install the driver
     ```sh{.line-numbers}
     sudo ./cuda_10.1.168_418.67_linux.run
@@ -313,6 +315,8 @@ conda config --set proxy_servers.https https://10.69.60.221:8080
     ```
 
 ### Install cuDNN
+Could install using package management, see [install guide](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#cudnn-package-manager-installation-overview).
+
 1. Download [cuDNN](https://developer.nvidia.com/rdp/cudnn-download) and install below deb
     - libcudnn7_7.6.2.24-1+cuda10.1_amd64.deb
     - libcudnn7-dev_7.6.2.24-1+cuda10.1_amd64.deb
