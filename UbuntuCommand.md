@@ -440,6 +440,7 @@ cmake \
 -DWITH_INF_ENGINE=ON \
 -DBUILD_PERF_TESTS=OFF \
 -DBUILD_TESTS=OFF \
+-DOPENCV_DOCS_INTERACTIVE_SVG=ON \
 -DJPEG_INCLUDE_DIR:PATH="/usr/local/include" \
 -DJPEG_LIBRARY_RELEASE:FILEPATH="/usr/local/lib/libjpeg.so" \
 -DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.7/site-packages" \
