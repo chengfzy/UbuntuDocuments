@@ -1,4 +1,7 @@
 # ROS Notes
+
+[TOC]
+
 Some notes and command used in ROS
 
 
@@ -44,6 +47,33 @@ sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31
 sudo apt update
 sudo apt-get install ros-melodic-desktop-full
 ```
+
+### Troubleshooting
+#### Error `sudo rosdep init`
+The error information is
+```bash
+ERROR: cannot download default sources list from:
+https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/sources.list.d/20-default.list
+Website may be down.
+```
+1. Try use `wget` to download this file
+	```bash
+	wget https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/sources.list.d/20-default.list
+	```
+1. If **connection error occurs** like below
+	```bash
+	--2020-07-16 10:48:14--  https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/sources.list.d/20-default.list
+	Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 0.0.0.0, ::
+	Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|0.0.0.0|:443... failed: Connection refused.
+	Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|::|:443... failed: Connection refused.
+	```
+1. Find the IP address of `raw.githubusercontent.com` and add it to file `/etc/hosts` like
+	```
+	199.232.68.133 raw.githubusercontent.com
+	```
+1. Run `sudo rosdep init` again
+Ref: https://zhuanlan.zhihu.com/p/110151098
+
 
 ### Use with CLion IDE
 ```sh
