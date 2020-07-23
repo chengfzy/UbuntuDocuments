@@ -8,6 +8,7 @@
 
 # variables
 folder=""
+pull=0 # whether to use git pull
 
 # regular colors
 Red='\033[0;31m'
@@ -28,9 +29,12 @@ NoColor='\033[0m'
 
 function usage() {
     cat <<-EOT
+    Garbage collection for git projects
+
     Usage: $0 [OPTIONS] PROJECT_FOLDER
     
     Options:
+        -p |pull    Use git pull before garbage collection
         -h |help    Display help message
     
     PROJECT_FOLDER  Project folder, could be the root folder contains multiple projects
@@ -44,8 +48,13 @@ EOT
 function gc() {
     name=${1##*/}
     if [ "$name" = ".git" ]; then
-        printf "\n${BCyan}GC: %s${NoColor}\n" $1
         cd $1
+        cd ..
+        if [ $pull = 1 ]; then
+            printf "\n${BCyan}Pull: %s${NoColor}\n" $1
+            git pull
+        fi
+        printf "\n${BCyan}GC: %s${NoColor}\n" $1
         git gc --prune=now
     else
         # -v mean natural sort, i.e., hidden file first
@@ -63,8 +72,11 @@ function gc() {
     fi
 }
 
-while getopts ":h" opt; do
+while getopts ":ph" opt; do
     case $opt in
+    p)
+        pull=1
+        ;;
     h)
         usage
         exit 0
@@ -89,6 +101,9 @@ fi
 # parse options
 printf "${BRed}========== Garbage Collection for git Project ==========${NoColor}\n"
 printf "${Cyan}  Project folder: %s${NoColor}\n" $folder
+if [ $pull = 1 ]; then
+    printf "${Cyan}  Use git pull before gc${NoColor}\n"
+fi
 
 # recursive gc for each folder
 gc $folder

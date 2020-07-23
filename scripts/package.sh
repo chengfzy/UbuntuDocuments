@@ -19,6 +19,8 @@ all_lib=0
 
 function usage() {
     cat <<-EOT
+    Package application with linked libraries
+
     Usage: $0 [OPTIONS] APPLICATION [DESTINATION]
     
     Options:
