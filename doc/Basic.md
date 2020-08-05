@@ -60,8 +60,10 @@ export http_proxy="http://10.69.60.221:8080"
 export https_proxy="https://10.69.60.221:8080"
 ```
 
+## ~~fcitx-wbpy~~
 
-## fcitx-wbpy
+改用[百度五笔输入法](https://srf.baidu.com/site/guanwang_linux/index.html)
+
 ```sh{.line-numbers}
 sudo add-apt-repository ppa:fcitx-team/nightly
 sudo apt-get update
@@ -113,27 +115,43 @@ screen -r <ID> # recover
     cat /etc/shells # list shell
     chsh -s /bin/zsh    # change to zsh
     ```
+    
 1. Install [on-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
     ```sh{.line-numbers}
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     ```
+    
+1. Add plugins
+
+    1. [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
+
+        ```
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        ```
+
 1. Config, modify `~/.zshrc` like below
+    
     ```sh{.line-numbers}
     # Modify theme
-    ZSH_THEME="agnoster"
-
+ZSH_THEME="agnoster"
+    
+    # plugins
+plugins=(git docker docker-compose zsh-syntax-highlighting)
+    
     # Hide default user
     DEFAULT_USER="jeffery"
-
+    
     # modify rm command
     alias rm=trash
     
     # added by Anaconda3 installer
     export PATH="/home/jeffery/anaconda3/bin:$PATH"
     ```
+    
 1. Install font
     - Download [powerline fonts](https://github.com/powerline/fonts) and install
     - Change font to 'Meslo' in teminal perference, also the scheme could be changed
+    
 1. Reboot
 
 

@@ -30,8 +30,7 @@ git config --global https.proxy 'https://10.69.60.221:8080'
 ## VS Code
 1. Install `Settings Sync` extensions and synchronization
 
-
-## Regex
+### Regex
 ```sh{.line-numbers}
 # find any characters, include break line
 [\s\S]*
@@ -52,7 +51,44 @@ sudo /usr/local/cmake-3.13.2-Linux-x86_64.sh
 sudo apt-get install doxygen
 ```
 
+## Docker
+
+1. [Install on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+2. 配置镜像加速
+	- https://www.runoob.com/docker/docker-mirror-acceleration.html
+	- https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors?spm=5176.12901015.0.i12901015.76b5525c3nd8q1
+
+### Troubleshooting
+
+#### 安装完后`docker run hello-world`报错/不用`sudo`也能使用`docker`命令
+
+```sh
+$ docker run hello-world
+docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/create: dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+```
+1. 添加docker属组(如果没有)
+	```sh
+	sudo groupadd docker
+	```
+1. 将用户加入该group中，退出并重新登陆
+	```sh
+	sudo gpasswd -a ${USER} docker
+	```
+1. 重启docker服务
+	```sh
+	sudo service docker restart
+	```
+1. 切换当前会话到新group或重启会话
+	```sh
+	newgrp - docker
+	```
+1. 重启后，从此，docker前再也不用`sudo`啦
+
+Ref: https://zhuanlan.zhihu.com/p/38861499
+
 ## Anaconda
+
 1. Channels setting, see [tsinghua mirror](https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/)
 ```sh{.line-numbers}
 # not be activated on startup
@@ -172,18 +208,24 @@ sudo apt-get install sqlitebrowser
 ```
 Build source for below libraries
 1. gtest
+
 1. Eigen
+
 1. ceres
+
 1. Sophus
+
+1. fmt
+
+    ```
+    cmake -DBUILD_SHARED_LIBS=TRUE -DFMT_TEST=OFF -DFMT_DOC=OFF ..
+    ```
+
 1. nlohmann json
+
 1. yaml-cpp
+
 1. SQLiteCpp
-1. libjpeg-turbo-2.0.2, modify cmake setting
-    - select `WITH_JPEG7`
-    - select `WITH_JPEG8`
-    - `CMAKE_INSTALL_PREFIX` to `/usr/local`
-    - `CMAKE_INSTALL_LIBDIR` to `lib`
-    - `CMAKE_INSTALL_DOCDIR` to `<CMAKE_INSTALL_DATAROOTDIR>/doc/turbojpeg`
 
 ## Tools Installation & Setting
 ### clang-format
