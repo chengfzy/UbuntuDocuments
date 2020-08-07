@@ -23,7 +23,7 @@
 
 - Method02, download the [LST version](https://software.intel.com/content/www/us/en/develop/tools/openvino-toolkit/choose-download.html), and install manually.
     1. Don't install `OpenCV` and `OpenVX`
-        
+       
     2. Add path to `~/.zshrc`
     
         ```sh
@@ -42,6 +42,8 @@ install libjpeg-turbo-2.0.2, modify cmake setting
 - `CMAKE_INSTALL_DOCDIR` to `<CMAKE_INSTALL_DATAROOTDIR>/doc/turbojpeg`
 
 ## OpenCV
+
+使用`OpenVINO`编译时, 生成的`python`包没有提示, 由于平时用`OpenVINO`比较少, 建议取消
 
 ```sh{.line-numbers}
 # install dependecy
