@@ -52,7 +52,7 @@ function gc() {
         cd ..
         if [ $pull = 1 ]; then
             printf "\n${BCyan}Pull: %s${NoColor}\n" $1
-            git pull
+            git pull --no-rebase
         fi
         printf "\n${BCyan}GC: %s${NoColor}\n" $1
         git gc --prune=now
