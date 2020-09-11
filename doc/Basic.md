@@ -16,7 +16,7 @@ Modify `/etc/apt/sources.list`, see [tsinghua mirror](https://mirrors.tuna.tsing
 
 ## Chrome
 1. Install chrome.
-    - Download in [ubuntu chrome](http://www.ubuntuchrome.com/)
+    - Download in [ubuntu chrome](http://www.ubuntuchrome.com/) or [chrome](http://www.chromeliulanqi.com/)
     - Download [SwitchOmega](https://github.com/FelisCatus/SwitchyOmega/releases)
     - Modify `SwitchyOmega_Chromium.crx` to `SwitchyOmega_Chromium.zip`, and unzip to some folder.
     - Open `chrome://extensions/` in chrome, check developer mode, and `Load unpacked` from previous directory.
@@ -25,15 +25,17 @@ Modify `/etc/apt/sources.list`, see [tsinghua mirror](https://mirrors.tuna.tsing
     ```sh{.line-numbers}
     # copy file to folder
     sudo chmod +x ./ssr 
-    sudo ./ssr install
-    sudo python3 ./select_config.py
+    ./ssr install
+    python3 ./select_config.py
     sudo ./ssr start
     ```
 1. Log in `chrome` and synchronization
-1. In ubuntu virtual system in `Parallels`, the chrome maybe show in white screen, add `--use-gl=angle` in file `/usr/share/applications/google-chrome.desktop` as below, modify there are 3 occurences.
-    ```
-    Exec=/usr/bin/google-chrome-stable --use-gl=angle
-    ```
+1. In ubuntu virtual system in `Parallels`, the chrome maybe show in white screen.
+    - Add `--disable-gpu` to launch chrome in terminal, and then remove the GPU acceleration in setting. See [Ref1](https://blog.csdn.net/hua_faded/article/details/78748553?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4.channel_param) and [Ref2](https://blog.csdn.net/nasohaohao/article/details/103194740?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param)
+    - ~~Add `--use-gl=angle` in file `/usr/share/applications/google-chrome.desktop` as below, there are 3 places should be modify.~~
+        ```
+        Exec=/usr/bin/google-chrome-stable --use-gl=angle
+        ```
 
 
 ## GNOME Extension
@@ -118,7 +120,7 @@ screen -r <ID> # recover
     
 1. Install [on-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
     ```sh{.line-numbers}
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     ```
     
 1. Add plugins
@@ -133,18 +135,18 @@ screen -r <ID> # recover
     
     ```sh{.line-numbers}
     # Modify theme
-ZSH_THEME="agnoster"
+    ZSH_THEME="agnoster"
     
     # plugins
-plugins=(git docker docker-compose zsh-syntax-highlighting)
+    plugins=(git docker docker-compose zsh-syntax-highlighting)
     
     # Hide default user
     DEFAULT_USER="jeffery"
     
-    # modify rm command
+    # Modify rm command
     alias rm=trash
     
-    # added by Anaconda3 installer
+    # Added by Anaconda3 installer
     export PATH="/home/jeffery/anaconda3/bin:$PATH"
     ```
     

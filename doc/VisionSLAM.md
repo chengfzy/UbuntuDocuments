@@ -46,8 +46,8 @@ install libjpeg-turbo-2.0.2, modify cmake setting
 使用`OpenVINO`编译时, 生成的`python`包没有提示, 由于平时用`OpenVINO`比较少, 建议取消
 
 ```sh{.line-numbers}
-# install dependecy
-sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libavresample-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev libopenblas-dev libatlas-cpp-0.6-dev liblapacke-dev
+# install dependency
+sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libavresample-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev libopenblas-dev libatlas-cpp-0.6-dev liblapacke-dev ccache
 # install jasper
 sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main" # add this if install error
 sudo apt-get install libjasper-dev
@@ -61,8 +61,6 @@ sudo apt-get install python-bs4 python3-bs4
 # used for svg document
 sudo apt-get install graphviz doxygen
 
-# modify doxygen setting in doc/Doxyfile.in, Line295
-# DOT_GRAPH_MAX_NODES = 500
 # modify doxygen setting in doc/Doxyfile.in
 sed -i 's/^DOT_GRAPH_MAX_NODES.*/DOT_GRAPH_MAX_NODES=500/' ./doc/Doxyfile.in
 
