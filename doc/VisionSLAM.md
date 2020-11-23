@@ -47,7 +47,7 @@ install libjpeg-turbo-2.0.2, modify cmake setting
 
 ```sh{.line-numbers}
 # install dependency
-sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libavresample-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev libopenblas-dev libatlas-cpp-0.6-dev liblapacke-dev ccache
+sudo apt-get install libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libavresample-dev libswscale-dev libtbb-dev libtbb2 libjpeg-dev libpng-dev libtiff5-dev libdc1394-22-dev libopenblas-dev libatlas-cpp-0.6-dev liblapacke-dev ccache
 # install jasper
 sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main" # add this if install error
 sudo apt-get install libjasper-dev
@@ -115,55 +115,47 @@ make install
 1. After install OpenCV, if use python version, below error may occurs
     ```sh{.line-numbers}
     ImportError: /home/jeffery/anaconda3/bin/../lib/libfontconfig.so.1: undefined symbol: FT_Done_MM_Var
-
     ImportError: /home/jeffery/anaconda3/bin/../lib/libpangoft2-1.0.so.0: undefined symbol: pango_font_description_set_variations
     ```
-
     Delete the `libfontconfig.so*` and `libpangoft2-1.0.so*` in `./anaconda3/lib`.
-
 1. sometimes, the pycharm couldnot show the completion for OpenCV library correctly, move `~/anaconda3/lib/python3.7/site-packages/cv2/cv2.cpython-37m-x86_64-linux-gnu.so` to `~/anaconda3/lib/python3.7/site-packages/cv2.cpython-37m-x86_64-linux-gnu.so` and delete the `cv2` folder could solve this problem.
 
 ## Pangolin
-
 1. Install `OpenCV` before `Pangolin` to install some third libraries.
-
 1. Install third libraries
-
-	```shell
+	```sh
 	sudo apt-get install libavdevice-dev libglew-dev libopenexr-dev libswscale-dev libuvc-dev libzstd-dev 
 	```
-
 1. Modify below code and build
 
 ```c++
 # modify code in /src/display/device/display_x11.cpp, line 98-112
-    int visual_attribs[] =
-    {
-        GLX_X_RENDERABLE    , True,
-        GLX_DRAWABLE_TYPE   , GLX_WINDOW_BIT,
-        GLX_RENDER_TYPE     , GLX_RGBA_BIT,
-        GLX_X_VISUAL_TYPE   , GLX_TRUE_COLOR,
-        GLX_RED_SIZE        , 8,
-        GLX_GREEN_SIZE      , 8,
-        GLX_BLUE_SIZE       , 8,
-        GLX_ALPHA_SIZE      , 8,
-        GLX_DEPTH_SIZE      , 24,
-        GLX_STENCIL_SIZE    , 8,
-        //GLX_DOUBLEBUFFER    , glx_doublebuffer ? True : False,
-        GLX_DOUBLEBUFFER    , False,
-        None
-    };
+int visual_attribs[] =
+{
+    GLX_X_RENDERABLE    , True,
+    GLX_DRAWABLE_TYPE   , GLX_WINDOW_BIT,
+    GLX_RENDER_TYPE     , GLX_RGBA_BIT,
+    GLX_X_VISUAL_TYPE   , GLX_TRUE_COLOR,
+    GLX_RED_SIZE        , 8,
+    GLX_GREEN_SIZE      , 8,
+    GLX_BLUE_SIZE       , 8,
+    GLX_ALPHA_SIZE      , 8,
+    GLX_DEPTH_SIZE      , 24,
+    GLX_STENCIL_SIZE    , 8,
+    //GLX_DOUBLEBUFFER    , glx_doublebuffer ? True : False,
+    GLX_DOUBLEBUFFER    , False,
+    None
+};
 ```
 ## Point Cloud Library
-    ```sh{.line-numbers}
-    sudo apt-get install libflann-dev libusb-1.0-0-dev libudev-dev freeglut3-dev graphviz libpng16-dev libgtest-dev libxmu-dev libxi-dev libpcap-dev libqhull-dev
-    build vtk(7.1.1) from source code
-    build pcl(1.8.1) from source code
-    ```
+```sh{.line-numbers}
+sudo apt-get install libflann-dev libusb-1.0-0-dev libudev-dev freeglut3-dev graphviz libpng16-dev libgtest-dev libxmu-dev libxi-dev libpcap-dev libqhull-dev
+build vtk(7.1.1) from source code
+build pcl(1.8.1) from source code
+```
 ## g2o
-    git checkout ff647b
-    
-    in Ubuntu 14.04
+1. git checkout ff647b 
+1. in Ubuntu 14.04
     ```sh{.line-numbers}
     download libQGLView
     open libQGLView/QGLView/QGLView.pro with qt and build
@@ -171,14 +163,14 @@ make install
     sudo make install
     build g2o
     
-    1. add line to ~/.bashrc
+    # 1. add line to ~/.bashrc
     export LD_LIBRARY_PATH=/home/jeffery/Programs/Qt5.10.1/5.10.1/gcc_64/lib:$LD_LIBRARY_PATH
-    2. method 1 will affect other programs, so if want to run g2o app, open terminal
+    # 2. method 1 will affect other programs, so if want to run g2o app, open terminal
     export LD_LIBRARY_PATH=/home/jeffery/Programs/Qt5.10.1/5.10.1/gcc_64/lib:$LD_LIBRARY_PATH
     then
     g2o_viewer
     ```
-    in Ubuntu 16.04
+1. in Ubuntu 16.04
     ```sh{.line-numbers}
     sudo apt-get install libQGLView-dev
     cmake and build g2o

@@ -40,11 +40,13 @@ git config --global https.proxy 'https://10.69.60.221:8080'
 ```
 
 ## CMake
-```sh{.line-numbers}
-sudo cp ./cmake-3.13.2-Linux-x86_64.sh /usr/local
-sudo chmod +x /usr/local/cmake-3.13.2-Linux-x86_64.sh
-sudo /usr/local/cmake-3.13.2-Linux-x86_64.sh
-```
+1. Download [CMake](https://cmake.org/download/)
+2. Install
+    ```sh{.line-numbers}
+    sudo cp ./cmake-3.13.2-Linux-x86_64.sh /usr/local
+    sudo chmod +x /usr/local/cmake-3.13.2-Linux-x86_64.sh
+    sudo /usr/local/cmake-3.13.2-Linux-x86_64.sh
+    ```
 
 ## doxygen
 ```sh{.line-numbers}

@@ -16,7 +16,7 @@ Modify `/etc/apt/sources.list`, see [tsinghua mirror](https://mirrors.tuna.tsing
 
 ## Chrome
 1. Install chrome.
-    - Download in [ubuntu chrome](http://www.ubuntuchrome.com/) or [chrome](http://www.chromeliulanqi.com/)
+    - Download from [chrome](http://www.chromeliulanqi.com/) or [chrome ubuntu update](https://www.ubuntuupdates.org/ppa/google_chrome)
     - Download [SwitchOmega](https://github.com/FelisCatus/SwitchyOmega/releases)
     - Modify `SwitchyOmega_Chromium.crx` to `SwitchyOmega_Chromium.zip`, and unzip to some folder.
     - Open `chrome://extensions/` in chrome, check developer mode, and `Load unpacked` from previous directory.
