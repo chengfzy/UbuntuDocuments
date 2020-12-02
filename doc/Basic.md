@@ -106,6 +106,8 @@ screen
 exit # quit screen mode
 screen -ls # show detached connection
 screen -r <ID> # recover
+
+# tmux, more powerful than screen
 ```
 
 ## zsh
