@@ -61,6 +61,7 @@ function gc() {
         for f in $(ls -av $1); do
             dir="$1/$f"
             if [ -d $dir ]; then
+                printf "\n${Green}Process Folder: %s${NoColor} ..." $dir
                 if [ "$f" = ".git" ]; then
                     gc $dir
                     break
