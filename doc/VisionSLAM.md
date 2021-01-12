@@ -34,12 +34,9 @@
 ## Jpeg-Turbo
 
 install libjpeg-turbo-2.0.2, modify cmake setting
-
-- select `WITH_JPEG7`
-- select `WITH_JPEG8`
 - `CMAKE_INSTALL_PREFIX` to `/usr/local`
 - `CMAKE_INSTALL_LIBDIR` to `lib`
-- `CMAKE_INSTALL_DOCDIR` to `<CMAKE_INSTALL_DATAROOTDIR>/doc/turbojpeg`
+- `CMAKE_INSTALL_DOCDIR` to `<CMAKE_INSTALL_DATAROOTDIR>/doc/jpegturbo`
 
 ## OpenCV
 
@@ -81,8 +78,6 @@ cmake \
 -DBUILD_PERF_TESTS=OFF \
 -DBUILD_TESTS=OFF \
 -DOPENCV_DOCS_INTERACTIVE_SVG=YES \
--DJPEG_INCLUDE_DIR:PATH="/usr/local/include" \
--DJPEG_LIBRARY_RELEASE:FILEPATH="/usr/local/lib/libjpeg.so" \
 -DPYTHON3_PACKAGES_PATH:PATH="/home/jeffery/anaconda3/lib/python3.8/site-packages" \
 -DPYTHON3_LIBRARY:FILEPATH="/home/jeffery/anaconda3/lib/libpython3.8.so" \
 -DPYTHON3_INCLUDE_DIR:PATH="/home/jeffery/anaconda3/include/python3.8" \
