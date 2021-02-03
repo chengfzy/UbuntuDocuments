@@ -62,6 +62,12 @@ export http_proxy="http://10.69.60.221:8080"
 export https_proxy="https://10.69.60.221:8080"
 ```
 
+If apt don't working due to network connection, try create a file named `proxy` in `/etc/apt/apt.conf.d`, and add below content, please note use `http` instead `https` for `https::Proxy`
+```
+Acquire::http::Proxy "http://10.69.60.221:8080";
+Acquire::https::Proxy "http://10.69.60.221:8080";
+```
+
 ## ~~fcitx-wbpy~~
 
 改用[百度五笔输入法](https://srf.baidu.com/site/guanwang_linux/index.html)
