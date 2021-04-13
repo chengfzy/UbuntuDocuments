@@ -27,6 +27,31 @@ git config --global http.proxy 'http://10.69.60.221:8080'
 git config --global https.proxy 'https://10.69.60.221:8080'
 ```
 
+### Multiple git account for one computer
+1. Generate key
+    ```sh{.line-numbers}
+    git config user.name "Jeffery Cheng"
+    git config user.email "chengcheng0829@gmail.com"
+
+    # generate key
+    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+    ```
+1. Rename the key in folder ~/.ssh and generate another key
+1. New a config file named "config" in "~/.ssh", like this
+    ```sh
+    #github ontheroadtomine@gmail.com
+    host github.com  #别名，随便定 后面配置地址有用
+        Hostname github.com #要连接的服务器
+        User ontheroadtomine #用户名
+        IdentityFile ~/.ssh/id_rsa  #密钥文件的地址，注意是私钥
+
+    #github softgeek@163.com
+    host lapisy #别名，随便定
+        Hostname github.com
+        User lapisy
+        IdentityFile ~/.ssh/lapisy_id_rsa
+    ```
+
 ## VS Code
 1. Install `Settings Sync` extensions and synchronization
 

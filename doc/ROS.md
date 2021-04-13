@@ -41,7 +41,7 @@ Ref:
 
 ```sh{.line-numbers}
 # new file `/etc/apt/sources.list.d/ros-latest.list` with content
-deb https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/ bionic main
+sudo sh -c '. /etc/lsb-release && echo "deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/ `lsb_release -cs` main" > /etc/apt/sources.list.d/ros-latest.list'
 # add GPG key and update
 sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 sudo apt update
