@@ -39,17 +39,14 @@ git config --global https.proxy 'https://10.69.60.221:8080'
 1. Rename the key in folder ~/.ssh and generate another key
 1. New a config file named "config" in "~/.ssh", like this
     ```sh
-    #github ontheroadtomine@gmail.com
-    host github.com  #别名，随便定 后面配置地址有用
-        Hostname github.com #要连接的服务器
-        User ontheroadtomine #用户名
-        IdentityFile ~/.ssh/id_rsa  #密钥文件的地址，注意是私钥
-
-    #github softgeek@163.com
-    host lapisy #别名，随便定
+    host github.com
         Hostname github.com
-        User lapisy
-        IdentityFile ~/.ssh/lapisy_id_rsa
+        User "Jeffery Cheng"
+        IdentityFile ~/.ssh/id_rsa_private
+    host Work
+        Hostname gitlab.work
+        User "Cheng Cheng"
+        IdentityFile ~/.ssh/id_rsa
     ```
 
 ## VS Code
@@ -259,7 +256,7 @@ Build source for below libraries
 1. clang format for file style and all project c++ files
     ```sh{.line-numbers}
     find . -regex '.*\.\(h\|hpp\|cpp\)' -exec clang-format-5.0 -style=file -i {} \;
-    find . -regex '.*\.\(h\|hpp\|cpp\)' -exec clang-format-6.0 -style="{BasedOnStyle: Google, IndentWidth: 4, DerivePointerAlignment: false, AccessModifierOffset: -2, ColumnLimit: 120}" -i {} \;
+    find . -regex '.*\.\(h\|hpp\|cpp\)' -exec clang-format-6.0 -style="{BasedOnStyle: Google, ColumnLimit: 120, SortIncludes: true, IncludeBlocks: Preserve, IndentWidth: 4, DerivePointerAlignment: false, AccessModifierOffset: -2}" -i {} \;
     ```
 ### Qt Creators
 1. Environment/Keyboard
