@@ -154,7 +154,7 @@ screen -r <ID> # recover
     # Modify rm command
     alias rm=trash
     
-    # Added by Anaconda3 installer
+    # Anaconda
     export PATH="/home/jeffery/anaconda3/bin:$PATH"
     ```
     
@@ -164,6 +164,11 @@ screen -r <ID> # recover
     
 1. Reboot
 
+
+## Shutter
+```sh{.line-numbers}
+sudo add-apt-repository ppa:shutter/ppa
+```
 
 ## uGet and aria2
 ```sh{.line-numbers}
