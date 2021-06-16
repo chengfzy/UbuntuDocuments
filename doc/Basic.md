@@ -195,8 +195,21 @@ pandoc ./test.tex -s -o ./test.md
 
 ## Zotero
 1. Install based on the [offical instruction](https://www.zotero.org/support/installation#how_do_i_install_zotero)
+1. Set the launcher if don't has icon
+    - remove the launcher symlink (the generic icon will disappear from the launchers):
+        ```sh
+        rm ~/.local/share/applications/zotero.desktop
+        ```
+    - execute the launcher script:
+        ```sh
+        /opt/zotero/set_launcher_icon
+        ```
+    - symlink the new launcher:
+        ```sh
+        ln -s /opt/zotero/zotero.desktop ~/.local/share/applications/zotero.desktop
+        ```
+    - The launcher icon should appear in the launchers, no need to reboot.
 1. Install plugin [better bibtex](https://retorque.re/zotero-better-bibtex/) ([download site](https://github.com/retorquere/zotero-better-bibtex/releases))
-    - `Modify Citation keys format` in `Better BibTeX/Citation keys` to `[shorttitle3_3]_[auth]_[year]`
 1. Modify config in `Preferences/Advanced/Config Editor`, search `rename`, and modify below value
     - `extensions.zotero.attachmentRenameFormatString`: `{%t{80}_}{%c_}{%y}`
     - `extensions.zotero.autoRenameFiles.linked`: `true`
