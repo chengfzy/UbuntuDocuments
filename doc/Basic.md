@@ -210,6 +210,7 @@ pandoc ./test.tex -s -o ./test.md
         ```
     - The launcher icon should appear in the launchers, no need to reboot.
 1. Install plugin [better bibtex](https://retorque.re/zotero-better-bibtex/) ([download site](https://github.com/retorquere/zotero-better-bibtex/releases))
+    - `Modify Citation keys format` in `Better BibTeX/Citation keys` to `[shorttitle3_3]_[auth]_[year]`
 1. Modify config in `Preferences/Advanced/Config Editor`, search `rename`, and modify below value
     - `extensions.zotero.attachmentRenameFormatString`: `{%t{80}_}{%c_}{%y}`
     - `extensions.zotero.autoRenameFiles.linked`: `true`
