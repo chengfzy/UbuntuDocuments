@@ -8,6 +8,9 @@ sudo add-apt-repository ppa:git-core/ppa
 sudo apt update
 apt-get install git
 
+# set editor to vim
+git config --global core.editor "vim"
+
 # user setting
 git config --global user.name "Jeffery Cheng"
 git config --global user.email "chengcheng0829@gmail.com"
