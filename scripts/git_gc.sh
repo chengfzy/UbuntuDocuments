@@ -53,6 +53,8 @@ function gc() {
         if [ $pull = 1 ]; then
             printf "\n${BCyan}Pull: %s${NoColor}\n" $1
             git pull --no-rebase
+            git submodule init
+            git submodule update
         fi
         printf "\n${BCyan}GC: %s${NoColor}\n" $1
         git gc --prune=now
