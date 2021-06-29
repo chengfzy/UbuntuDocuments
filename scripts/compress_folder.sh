@@ -63,7 +63,7 @@ function compress() {
                 tar -czf $1/$f.tar.gz $dir
             else
                 # zip
-                zip -rq9 $1/$f..zip $dir
+                zip -rq9 $1/$f.zip $dir
             fi
         fi
     done
