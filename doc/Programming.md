@@ -232,7 +232,7 @@ sudo apt-get install sqlitebrowser
  sudo apt-get install libgoogle-glog-dev libgflags-dev libboost1.65-all-dev
  sudo apt-get install libsuitesparse-dev libtbb-dev nasm
  sudo apt-get install clang-format-10 qt5-default
- sudo ln -s /usr/bin/clang-format /usr/bin/clang-format-10
+ sudo ln -s /usr/bin/clang-format-10 /usr/bin/clang-format
 ```
 Build source for below libraries
 1. gtest
