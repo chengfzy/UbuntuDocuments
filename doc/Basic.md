@@ -169,6 +169,7 @@ screen -r <ID> # recover
 ```sh{.line-numbers}
 sudo add-apt-repository ppa:linuxuprising/shutter
 sudo apt install shutter
+# modify save file name pattern to "$Y-%m-%d_%T"
 ```
 
 ## uGet and aria2
