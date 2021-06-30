@@ -167,7 +167,8 @@ screen -r <ID> # recover
 
 ## Shutter
 ```sh{.line-numbers}
-sudo add-apt-repository ppa:shutter/ppa
+sudo add-apt-repository ppa:linuxuprising/shutter
+sudo apt install shutter
 ```
 
 ## uGet and aria2
