@@ -105,6 +105,9 @@ scp -rf ~/Documents/Code jeffery@192.108.0.2:/home/jeffery/Documents
 # rsync, copy file exclude
 rsync -arv --exclude '*.bag' jeffery@192.108.0.2:/home/jeffery/Documents/Code/CameraCalibration/ ./
 
+# copy id for connect without password
+ssh-copy-id jeffery@192.168.100.2
+
 # screen
 screen
 # Ctrl+A, ? for help
