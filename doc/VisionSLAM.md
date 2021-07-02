@@ -112,7 +112,7 @@ make install
     ImportError: /home/jeffery/anaconda3/bin/../lib/libfontconfig.so.1: undefined symbol: FT_Done_MM_Var
     ImportError: /home/jeffery/anaconda3/bin/../lib/libpangoft2-1.0.so.0: undefined symbol: pango_font_description_set_variations
     ```
-    Delete the `libfontconfig.so*` and `libpangoft2-1.0.so*` in `./anaconda3/lib`.
+    Delete the `libfontconfig.so*`, `libpangoft2-1.0.so*`, `libpangoft2-1.0.so*` and `libcairo.so*` in `./anaconda3/lib`.
 1. sometimes, the pycharm couldnot show the completion for OpenCV library correctly, move `~/anaconda3/lib/python3.7/site-packages/cv2/cv2.cpython-37m-x86_64-linux-gnu.so` to `~/anaconda3/lib/python3.7/site-packages/cv2.cpython-37m-x86_64-linux-gnu.so` and delete the `cv2` folder could solve this problem.
 
 ## Pangolin
@@ -144,9 +144,14 @@ int visual_attribs[] =
 ```
 ## Point Cloud Library
 ```sh{.line-numbers}
+# install third party libraries
 sudo apt-get install libflann-dev libusb-1.0-0-dev libudev-dev freeglut3-dev graphviz libpng16-dev libgtest-dev libxmu-dev libxi-dev libpcap-dev libqhull-dev
-build vtk(7.1.1) from source code
-build pcl(1.8.1) from source code
+sudo apt install libvtk7-dev
+
+# some setting for build tutorials
+sudo apt install python3-sphinx
+pip install sphinxcontrib-doxylink sphinx-rtd-theme
+
 ```
 ## g2o
 1. git checkout ff647b 
