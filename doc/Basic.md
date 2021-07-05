@@ -188,12 +188,22 @@ sudo apt install uget-integrator    # for chrome integration
 ## Latex
 ```sh{.line-numbers}
 sudo apt-get install texlive-full
+
+# install fonts
+sudo cp ./* /usr/local/fangzheng
+sudo mkfontscale
+sudo mkfontdir
+cd /usr/share/fonts
+sudo fc-cache -fv
+
 # texstudio
 sudo add-apt-repository ppa:sunderme/texstudio
 sudo apt-get update
 sudo apt-get install texstudio
+
 # format
 latexindent -w -s ./File.tex
+
 # pandoc
 pandoc ./test.tex -s -o ./test.md
 ```
