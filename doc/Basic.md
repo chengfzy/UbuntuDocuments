@@ -168,6 +168,17 @@ screen -r <ID> # recover
 1. Reboot
 
 
+## Some Usefull Command
+1. Count the number of files in directory
+    ```sh{.line-numbers}
+    # files in current directories, don't include sub directories
+    ls -l | grep '^-' | wc -l
+    # all files in current directories and sub directories
+    ls -lR | grep '^-' | wc -l
+    # directories number in current directories and sub directories
+    ls -lR | grep '^d' | wc -l
+    ```
+
 ## Shutter
 ```sh{.line-numbers}
 sudo add-apt-repository ppa:linuxuprising/shutter
