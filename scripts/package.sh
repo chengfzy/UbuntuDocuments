@@ -101,8 +101,10 @@ cp $app $des/$full_name/bin
 cp $libs $des/$full_name/lib
 # add run.sh
 echo "#!/bin/bash
-export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:\$PWD/lib
-./bin/$name" >$des/$full_name/run.sh
+current_folder=\$(dirname \$(readlink -f "\$0"))
+export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:\$current_folder/lib
+\$current_folder/bin/$name" >$des/$full_name/run.sh
+chmod +x $des/$full_name/run.sh
 
 # package to .tar.gz file
 printf '[2/2] Package to %s.tar.gz...\n' $full_name
