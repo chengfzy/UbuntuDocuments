@@ -68,7 +68,8 @@ source /opt/intel/openvino/bin/setupvars.sh
 # cmake commond: enable turbo-jpeg for performance
 cmake \
 -DCMAKE_BUILD_TYPE:STRING="Release" \
--DOPENCV_EXTRA_MODULES_PATH:PATH="../contrib/modules" \
+# -DOPENCV_EXTRA_MODULES_PATH:PATH="../contrib/modules" \   # for version < 4.5.4
+-DOPENCV_EXTRA_MODULES_PATH:PATH="./contrib/modules" \
 -DBUILD_DOCS=ON \
 -DWITH_QT=ON  \
 -DWITH_CUDA=ON \
