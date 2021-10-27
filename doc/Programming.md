@@ -78,6 +78,15 @@ git config --global https.proxy 'https://10.69.60.221:8080'
 sudo apt-get install doxygen
 ```
 
+## conan
+```sh{.line-numbers}
+# search package in remote server
+conan search -r=conancenter opencv
+# list package
+conan search -r=conancenter
+```
+
+
 ## Docker
 
 1. [Install on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)

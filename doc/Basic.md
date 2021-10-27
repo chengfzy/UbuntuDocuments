@@ -168,7 +168,7 @@ screen -r <ID> # recover
 1. Reboot
 
 
-## Some Usefull Command
+## Some Useful Command
 1. Count the number of files in directory
     ```sh{.line-numbers}
     # files in current directories, don't include sub directories
