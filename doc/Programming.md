@@ -84,6 +84,39 @@ sudo apt-get install doxygen
 conan search -r=conancenter opencv
 # list package
 conan search -r=conancenter
+# search package
+conan search opencv/4.5.4@com/stable -r conanemgcd
+# remove package
+conan remove opencv/4.5.4@com/stable -r conanemgcd
+
+# create package with options
+conan export-pkg . com/stable -o opencv:with_cuda=True
+# upload package
+conan upload opencv/4.5.4@com/stable --all -r conanemgcd
+```
+
+upload python example
+```py{.line-numbers}
+from conans import ConanFile, tools
+
+class OpenCVConan(ConanFile):
+    name = "opencv"
+    version = "4.5.4"
+    settings = "os", "compiler", "build_type", "arch"
+    options = {"with_cuda": [True, False]}
+    default_options = {"with_cuda": True}
+    description = "OpenCV library"
+    license = 'None'
+    url = "https://opencv.org/"
+    requires = "eigen3/3.3.9@com/stable"
+
+    def package(self):
+        self.copy("*", symlinks=True)
+
+    def package_info(self):
+        self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.includedirs = ['include/opencv4']
+
 ```
 
 
